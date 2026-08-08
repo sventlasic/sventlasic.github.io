@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HelperHive</title>
+<meta name="description" content="HelperHive — a Philippines marketplace app connecting employers with household helpers.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐝</text></svg>">
+<style>
+  :root{
+    --teal:#1A9E8F; --teal-lt:#E6F7F5; --navy:#0F2D3D; --navy-lt:#1A4A5E;
+    --sand:#F7F4EF; --mid:#6B7A8D; --white:#FFFFFF; --border:#DDE3EB;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--sand); color:var(--navy);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  .hero{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy-lt) 100%);
+    color:var(--white); padding:64px 24px 56px; text-align:center;
+  }
+  .logo{font-size:52px; line-height:1; margin-bottom:12px}
+  .hero h1{margin:0 0 8px; font-size:34px; letter-spacing:-.5px}
+  .hero p{margin:0; color:#9FC4D1; font-size:17px}
+  main{max-width:720px; margin:0 auto; padding:40px 24px 64px}
+  .card{
+    background:var(--white); border:1px solid var(--border); border-radius:16px;
+    padding:28px; margin-bottom:20px;
+  }
+  h2{font-size:20px; margin:0 0 12px}
+  p{margin:0 0 14px}
+  p:last-child{margin-bottom:0}
+  .muted{color:var(--mid)}
+  ul{margin:0; padding-left:20px; color:var(--mid)}
+  li{margin-bottom:6px}
+  .links{display:flex; flex-wrap:wrap; gap:12px; margin-top:4px}
+  .btn{
+    display:inline-block; text-decoration:none; font-weight:600; font-size:15px;
+    padding:12px 20px; border-radius:20px; background:var(--teal); color:var(--white);
+  }
+  .btn.alt{background:var(--teal-lt); color:var(--teal)}
+  .btn:hover{opacity:.9}
+  a{color:var(--teal)}
+  footer{
+    text-align:center; color:var(--mid); font-size:14px;
+    padding:0 24px 48px; max-width:720px; margin:0 auto;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="logo">🐝</div>
+  <h1>HelperHive</h1>
+  <p>Find trusted household help near you.</p>
+</div>
+
+<main>
+  <div class="card">
+    <h2>About the app</h2>
+    <p>HelperHive is a mobile marketplace for the Philippines that connects <strong>employers</strong> with <strong>household helpers</strong> — cleaning, cooking, childcare, elderly care, pet care and similar services.</p>
+    <p class="muted">HelperHive is not an employer, employment agency, or party to any agreement between users. We do not vet or background-check users. All work arrangements are agreed directly between the employer and the helper.</p>
+  </div>
+
+  <div class="card">
+    <h2>Privacy by design</h2>
+    <p>We deliberately collect as little as possible:</p>
+    <ul>
+      <li>Name, email and photo from your Google or Facebook sign-in</li>
+      <li>Your <strong>city</strong> only — never GPS coordinates, street address, barangay, ZIP code, phone number or government IDs</li>
+      <li>The content you create in the app: messages, reviews and reports</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Legal</h2>
+    <p class="muted">Last updated: July 2026 · Version 1.1</p>
+    <div class="links">
+      <a class="btn" href="terms.html">Terms of Service</a>
+      <a class="btn alt" href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Contact &amp; support</h2>
+    <p>Questions, privacy requests, or account deletion:<br>
+    <a href="mailto:helperhivesupport@gmail.com">helperhivesupport@gmail.com</a></p>
+    <p class="muted">You can also delete your account at any time from the app: <strong>Profile → Privacy &amp; Security → Delete Account</strong>.</p>
+  </div>
+</main>
+
+<footer>© 2026 HelperHive · Philippines</footer>
+
+</body>
+</html>
