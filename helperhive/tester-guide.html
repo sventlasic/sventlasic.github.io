@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="How to join the HelperHive closed test on Google Play, what to try in the app, and what to do if something goes wrong.">
+<meta property="og:title" content="HelperHive Tester Guide">
+<meta property="og:description" content="How to join the HelperHive closed test, what to try, and the 14-day rule.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sventlasic.github.io/helperhive/tester-guide.html">
+<meta name="theme-color" content="#0F2D3D">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128029;</text></svg>">
+<title>HelperHive Tester Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+
+<style>
+  /* ---- Tokens: light (also the un-stamped default) ---- */
+  :root {
+    --ground:      #F7F4EF;   /* app "sand" */
+    --surface:     #FFFFFF;
+    --surface-2:   #F1ECE4;
+    --ink:         #0F2D3D;   /* app "navy" */
+    --ink-soft:    #3D5A69;
+    --muted:       #6B7A8D;   /* app "mid" */
+    --line:        #DDE3EB;
+    --line-soft:   #E9E4DB;
+    --teal:        #1A9E8F;
+    --teal-deep:   #147A6E;
+    --teal-wash:   #E6F7F5;
+    --coral:       #E8634A;
+    --coral-deep:  #B8402A;
+    --coral-wash:  #FDEDE9;
+    --honey:       #F5A623;
+    --honey-deep:  #8A5B05;
+    --honey-wash:  #FCF2DF;
+    --shadow:      0 1px 2px rgba(15,45,61,.05), 0 10px 24px -18px rgba(15,45,61,.35);
+
+    --measure: 34rem;
+    --step--1: .8125rem;
+    --step-0:  1.0625rem;
+    --step-1:  1.25rem;
+    --step-2:  1.5rem;
+    --step-3:  2rem;
+    --step-4:  2.75rem;
+
+    --font-display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+    --font-body: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  }
+
+  /* ---- Tokens: dark (system preference, unless light is explicitly chosen) ---- */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:      #0A1F2E;   /* app dark splash ground */
+      --surface:     #0F2D3D;
+      --surface-2:   #16394A;
+      --ink:         #EAF2F3;
+      --ink-soft:    #C3D6DC;
+      --muted:       #8FAEBC;
+      --line:        #23485A;
+      --line-soft:   #1B3E4F;
+      --teal:        #34C6B4;
+      --teal-deep:   #7FE3D6;
+      --teal-wash:   #10333A;
+      --coral:       #FF8368;
+      --coral-deep:  #FFB6A3;
+      --coral-wash:  #3A2019;
+      --honey:       #FFC15E;
+      --honey-deep:  #FFD79A;
+      --honey-wash:  #3A2C11;
+      --shadow:      0 1px 2px rgba(0,0,0,.3), 0 14px 30px -20px rgba(0,0,0,.8);
+    }
+  }
+  /* ---- Tokens: dark chosen explicitly ---- */
+  :root[data-theme="dark"] {
+    --ground:      #0A1F2E;
+    --surface:     #0F2D3D;
+    --surface-2:   #16394A;
+    --ink:         #EAF2F3;
+    --ink-soft:    #C3D6DC;
+    --muted:       #8FAEBC;
+    --line:        #23485A;
+    --line-soft:   #1B3E4F;
+    --teal:        #34C6B4;
+    --teal-deep:   #7FE3D6;
+    --teal-wash:   #10333A;
+    --coral:       #FF8368;
+    --coral-deep:  #FFB6A3;
+    --coral-wash:  #3A2019;
+    --honey:       #FFC15E;
+    --honey-deep:  #FFD79A;
+    --honey-wash:  #3A2C11;
+    --shadow:      0 1px 2px rgba(0,0,0,.3), 0 14px 30px -20px rgba(0,0,0,.8);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: calc(var(--measure) + 4rem);
+    margin: 0 auto;
+    padding: 0 1.25rem 4rem;
+  }
+
+  /* ================= Header ================= */
+  .masthead {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 3rem 0 2.25rem;
+  }
+  .brand { display: flex; align-items: center; gap: .6rem; }
+  .brand svg { display: block; }
+  .brand-name {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.0625rem;
+    letter-spacing: -.01em;
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--teal-deep);
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2.25rem, 9vw, var(--step-4));
+    line-height: 1.02;
+    letter-spacing: -.035em;
+    text-wrap: balance;
+    margin: 0;
+  }
+  .lede {
+    margin: 0;
+    max-width: var(--measure);
+    font-size: var(--step-1);
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .lede strong { color: var(--ink); font-weight: 600; }
+
+  /* ================= Summary tiles ================= */
+  .tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: .75rem;
+    margin: 0 0 3rem;
+  }
+  .tile {
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
+    border-radius: 14px;
+    padding: 1rem 1.1rem 1.15rem;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+  }
+  .tile-label {
+    font-family: var(--font-mono);
+    font-size: .6875rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .tile-value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.375rem;
+    letter-spacing: -.02em;
+    line-height: 1.15;
+  }
+  .tile-note { font-size: var(--step--1); color: var(--muted); line-height: 1.45; }
+  .tile.flag { background: var(--coral-wash); border-color: transparent; }
+  .tile.flag .tile-label { color: var(--coral-deep); }
+  .tile.flag .tile-value { color: var(--coral-deep); }
+  .tile.flag .tile-note { color: var(--coral-deep); opacity: .85; }
+
+  /* ================= Sections ================= */
+  section { margin: 0 0 3.25rem; }
+  .sec-head {
+    display: flex;
+    align-items: center;
+    gap: .85rem;
+    margin: 0 0 1.1rem;
+  }
+  .hex {
+    flex: none;
+    width: 2.15rem;
+    height: 2.4rem;
+    display: grid;
+    place-items: center;
+    background: var(--teal);
+    color: #FFFFFF;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    font-family: var(--font-mono);
+    font-size: .875rem;
+    font-weight: 600;
+    padding-bottom: 1px;
+  }
+  :root[data-theme="dark"] .hex { color: #06232B; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hex { color: #06232B; } }
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--step-2);
+    letter-spacing: -.025em;
+    line-height: 1.15;
+    text-wrap: balance;
+    margin: 0;
+  }
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--step-0);
+    letter-spacing: -.01em;
+    margin: 1.75rem 0 .6rem;
+  }
+  p { max-width: var(--measure); margin: 0 0 1rem; }
+  a { color: var(--teal-deep); text-underline-offset: .18em; text-decoration-thickness: 1px; }
+  a:focus-visible, input:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
+  strong { font-weight: 600; }
+  em { color: var(--ink-soft); }
+
+  /* Ordered steps */
+  ol.steps { list-style: none; counter-reset: s; margin: 0 0 1rem; padding: 0; display: flex; flex-direction: column; gap: .85rem; }
+  ol.steps > li {
+    counter-increment: s;
+    display: grid;
+    grid-template-columns: 1.6rem 1fr;
+    gap: .8rem;
+    max-width: var(--measure);
+  }
+  ol.steps > li::before {
+    content: counter(s);
+    font-family: var(--font-mono);
+    font-size: .8125rem;
+    font-weight: 600;
+    color: var(--teal-deep);
+    background: var(--teal-wash);
+    border-radius: 50%;
+    width: 1.6rem; height: 1.6rem;
+    display: grid; place-items: center;
+    margin-top: .18rem;
+  }
+  ol.steps ul { margin: .45rem 0 0; padding-left: 1.1rem; color: var(--ink-soft); }
+  ol.steps ul li { margin-bottom: .2rem; }
+
+  ul.plain { margin: 0 0 1rem; padding-left: 1.15rem; max-width: var(--measure); display: flex; flex-direction: column; gap: .55rem; }
+  ul.plain li::marker { color: var(--teal); }
+
+  /* Callouts */
+  .note {
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
+    border-radius: 14px;
+    padding: .95rem 1.1rem;
+    margin: 0 0 1.25rem;
+    max-width: var(--measure);
+    font-size: var(--step--1);
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .note p { margin: 0; font-size: inherit; }
+  .note .note-title {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: .6875rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-bottom: .3rem;
+  }
+  .note.alert { background: var(--coral-wash); border-color: transparent; color: var(--coral-deep); }
+  .note.alert .note-title { color: var(--coral-deep); }
+  .note.key { background: var(--honey-wash); border-color: transparent; color: var(--honey-deep); }
+  .note.key .note-title { color: var(--honey-deep); }
+
+  /* Link slot */
+  .linkslot {
+    background: var(--surface);
+    border: 2px dashed var(--teal);
+    border-radius: 14px;
+    padding: 1rem 1.1rem;
+    max-width: var(--measure);
+    margin: 0 0 1rem;
+  }
+  .linkslot .note-title { color: var(--teal-deep); }
+  .linkslot .slot-value {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--muted);
+    word-break: break-all;
+  }
+
+  /* Checklist */
+  .checklist { display: flex; flex-direction: column; gap: .1rem; max-width: var(--measure); margin: 0 0 .5rem; }
+  .check {
+    display: grid;
+    grid-template-columns: 1.35rem 1fr;
+    gap: .7rem;
+    align-items: start;
+    padding: .5rem .6rem .5rem .4rem;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: var(--step--1);
+    line-height: 1.5;
+    transition: background .15s ease;
+  }
+  .check:hover { background: var(--surface-2); }
+  .check input {
+    appearance: none;
+    -webkit-appearance: none;
+    margin: .18rem 0 0;
+    width: 1.35rem; height: 1.35rem;
+    border: 1.5px solid var(--line);
+    background: var(--surface);
+    border-radius: 6px;
+    display: grid; place-items: center;
+    cursor: pointer;
+    flex: none;
+  }
+  .check input:checked { background: var(--teal); border-color: var(--teal); }
+  .check input:checked::after {
+    content: "";
+    width: .42rem; height: .72rem;
+    border: solid #FFFFFF;
+    border-width: 0 2px 2px 0;
+    transform: rotate(43deg) translate(-1px, -1.5px);
+  }
+  .check input:checked + span { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--line); }
+  .progress {
+    font-family: var(--font-mono);
+    font-size: .6875rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: .4rem 0 0 .4rem;
+  }
+
+  /* Tables */
+  .tablewrap { overflow-x: auto; max-width: var(--measure); margin: 0 0 1.25rem; }
+  table { border-collapse: collapse; width: 100%; font-size: var(--step--1); }
+  th, td { text-align: left; padding: .7rem .8rem; vertical-align: top; border-bottom: 1px solid var(--line-soft); }
+  th {
+    font-family: var(--font-mono);
+    font-size: .6875rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td:first-child { font-weight: 600; color: var(--ink); width: 42%; }
+
+  /* Timeline */
+  .timeline { display: flex; flex-direction: column; max-width: var(--measure); margin: 0 0 1.25rem; }
+  .tl-row { display: grid; grid-template-columns: 5.5rem 1fr; gap: 1rem; padding: .8rem 0; border-bottom: 1px solid var(--line-soft); }
+  .tl-row:last-child { border-bottom: 0; }
+  .tl-day {
+    font-family: var(--font-mono);
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--teal-deep);
+    padding-top: .12rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .tl-row.finish .tl-day { color: var(--honey-deep); }
+  .tl-text { font-size: var(--step--1); color: var(--ink-soft); }
+  .tl-text strong { color: var(--ink); }
+
+  /* Sign-off */
+  .signoff {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line-soft);
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+  .signoff .big {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--step-2);
+    letter-spacing: -.025em;
+    line-height: 1.2;
+    text-wrap: balance;
+    max-width: 26ch;
+  }
+  .signoff .small { font-size: var(--step--1); color: var(--muted); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="masthead">
+    <div class="brand">
+      <svg width="26" height="29" viewBox="0 0 26 29" aria-hidden="true">
+        <path d="M13 0 26 7.25v14.5L13 29 0 21.75V7.25Z" fill="var(--teal)"/>
+        <path d="M13 6.6 20.2 10.6v8L13 22.6 5.8 18.6v-8Z" fill="var(--surface)"/>
+        <path d="M13 11.2 16.2 13v3.6L13 18.4 9.8 16.6V13Z" fill="var(--teal)"/>
+      </svg>
+      <span class="brand-name">HelperHive</span>
+    </div>
+
+    <div>
+      <p class="eyebrow">Closed testing &middot; Android &middot; v1.0.0</p>
+      <h1>Tester Guide</h1>
+    </div>
+
+    <p class="lede">
+      HelperHive connects <strong>employers</strong> who need household help — cleaning, cooking, childcare — with
+      <strong>helpers</strong> looking for that work, anywhere in the Philippines. Browse, chat, arrange work directly.
+      No fees, no commission.
+    </p>
+    <p class="lede">
+      Before it can go public, Google requires <strong>12 testers opted in for 14 days straight</strong>.
+      That's the main thing we need from you — plus any bugs you spot along the way.
+    </p>
+  </header>
+
+  <div class="tiles">
+    <div class="tile">
+      <span class="tile-label">Your time</span>
+      <span class="tile-value">15 minutes</span>
+      <span class="tile-note">Try it once, then just leave it installed. No daily obligation.</span>
+    </div>
+    <div class="tile">
+      <span class="tile-label">You'll need</span>
+      <span class="tile-value">Android + Google</span>
+      <span class="tile-note">Android 7.0 or newer, and the Google account your phone uses for the Play Store.</span>
+    </div>
+    <div class="tile flag">
+      <span class="tile-label">The one rule</span>
+      <span class="tile-value">Stay in 14 days</span>
+      <span class="tile-note">If we drop below 12 testers, the counter resets to zero — for everyone.</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-head"><span class="hex">1</span><h2>How to join</h2></div>
+
+    <ol class="steps">
+      <li><span><strong>Send us the Google email</strong> your phone uses. It has to be the same account signed into the Play Store on that phone — the invite is tied to that address.</span></li>
+      <li><span><strong>Open the opt-in link on the phone</strong>, not on a computer.</span></li>
+      <li><span>Tap <strong>Become a tester</strong>.</span></li>
+      <li><span>On that same page, tap <strong>Download it on Google Play</strong> and install.</span></li>
+    </ol>
+
+    <div class="linkslot">
+      <span class="note-title">Your opt-in link</span>
+      <span class="slot-value">— to be pasted here before this guide goes out —</span>
+    </div>
+
+    <div class="note alert">
+      <span class="note-title">Install from Play only</span>
+      <p>If someone hands you an APK file, installing that <strong>does not count</strong> toward the 12 testers. It has to arrive through the Play Store link.</p>
+    </div>
+
+    <p><em>After you accept, the app can take a few hours to appear on Play. If the store says "item not found", wait a bit and open the link again.</em></p>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="hex">2</span><h2>Your first run</h2></div>
+
+    <ol class="steps">
+      <li><span><strong>Welcome slides</strong> — swipe through.</span></li>
+      <li><span><strong>Sign in with Google.</strong> There's no "Continue with Facebook" yet; Google is the only way in for now.</span></li>
+      <li><span><strong>Accept the Terms &amp; Privacy Policy.</strong> Worth a skim — it's short.</span></li>
+      <li><span><strong>Pick your role:</strong> "I need a helper" (Employer) or "I'm looking for work" (Helper). You can't switch later, so to see both sides you'd need a second Google account on a second phone.</span></li>
+      <li><span><strong>Set up your profile.</strong>
+        <ul>
+          <li>Employers: name and city. One step.</li>
+          <li>Helpers: photo, city, skills, schedule, short bio. Five quick steps.</li>
+        </ul>
+      </span></li>
+      <li><span><strong>Tap Allow when Android asks about notifications.</strong> New messages and job applications arrive that way, and Android only offers that prompt twice before locking it out for good.</span></li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="hex">3</span><h2>What to try</h2></div>
+    <p>Nobody has to do all of this. Tick off whatever you get to — the list remembers where you left off on this device.</p>
+
+    <h3>Everyone</h3>
+    <div class="checklist" data-list="all">
+      <label class="check"><input type="checkbox"><span>Browse the home list and scroll to the bottom — more people load as you go</span></label>
+      <label class="check"><input type="checkbox"><span>Use <strong>Search</strong>, then the <strong>Filter</strong> drawer (city, skills, rate, rating)</span></label>
+      <label class="check"><input type="checkbox"><span>Open someone's profile, tap <strong>Message</strong>, send a few messages back and forth</span></label>
+      <label class="check"><input type="checkbox"><span>Look at the safety banner on top of the chat, and the <strong>Report &amp; Block</strong> options</span></label>
+      <label class="check"><input type="checkbox"><span>Open the notifications bell — does the unread badge clear properly?</span></label>
+      <label class="check"><input type="checkbox"><span>Visit <strong>Profile → Privacy &amp; Security</strong> and see what's there</span></label>
+      <label class="check"><input type="checkbox"><span>Use it on mobile data as well as wifi, and try your phone in dark mode</span></label>
+    </div>
+
+    <h3>If you're an employer</h3>
+    <div class="checklist" data-list="employer">
+      <label class="check"><input type="checkbox"><span>Post a job order — "need a cook in Cebu, twice a week"</span></label>
+      <label class="check"><input type="checkbox"><span>Wait for applicants, then <strong>accept</strong> one (that opens a chat) or <strong>reject</strong></span></label>
+      <label class="check"><input type="checkbox"><span>Leave a review for a helper you chatted with</span></label>
+    </div>
+
+    <h3>If you're a helper</h3>
+    <div class="checklist" data-list="helper">
+      <label class="check"><input type="checkbox"><span>Post a "looking for work" notice</span></label>
+      <label class="check"><input type="checkbox"><span>Find a job post and <strong>apply</strong> with a short pitch</span></label>
+      <label class="check"><input type="checkbox"><span>Check that you're told when you've been accepted or rejected</span></label>
+    </div>
+    <p class="progress" id="progress">0 of 13 done</p>
+
+    <div class="note key">
+      <span class="note-title">Posting limits, on purpose</span>
+      <p>You get <strong>1 urgent + 2 regular posts a day</strong>. Urgent posts vanish after a day, regular ones after a week. When you run out, the app offers to unlock one more if you watch a short video (up to 2 extra a day) — <strong>please test that too</strong>. It's how the app is meant to pay for itself.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="hex">4</span><h2>Not bugs</h2></div>
+    <p>These are deliberate. No need to report them:</p>
+    <ul class="plain">
+      <li><strong>The ads are fake.</strong> The banners show Google's test ads during closed testing. Tapping one does nothing useful, and it's completely safe — it earns nothing and costs nothing.</li>
+      <li><strong>There's no Facebook login.</strong> Hidden for now. Google sign-in only.</li>
+      <li><strong>There's no iPhone version.</strong> Android only for this release.</li>
+      <li><strong>You can't switch between Employer and Helper</strong> on one account.</li>
+      <li><strong>It'll feel empty at first.</strong> The only profiles and job posts are the ones testers create. Posting something helps everyone else test.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="hex">5</span><h2>Your privacy</h2></div>
+    <p>The app was built to collect as little as it possibly can:</p>
+    <ul class="plain">
+      <li>We store <strong>only</strong> your name, email and profile photo — all from your Google sign-in — plus your <strong>city</strong>.</li>
+      <li>We <strong>never</strong> store GPS coordinates, a street address, barangay, ZIP, phone number or any ID. If you let the app use your location, it works out the city name in the moment and throws the rest away. You can skip it entirely and pick your city from a list.</li>
+      <li>Other testers only ever see your name, photo, city, and whatever you write in your profile and posts.</li>
+      <li>You can delete your account and everything on it at any time, from <strong>Profile → Privacy &amp; Security → Delete Account</strong>. It's immediate and permanent. (Just not before day 14, please.)</li>
+    </ul>
+    <div class="note">
+      <span class="note-title">Test data</span>
+      <p>This build runs against a separate test database that gets wiped before the public launch. Don't post anything you'd mind losing.</p>
+    </div>
+    <p>The full documents, if you want them: <a href="https://sventlasic.github.io/privacy.html">Privacy Policy</a> &middot; <a href="https://sventlasic.github.io/terms.html">Terms of Service</a> &middot; <a href="https://sventlasic.github.io/delete-account.html">How to delete your account</a>.</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="hex">6</span><h2>Found a bug? Tell us</h2></div>
+    <p>Email <a href="mailto:helperhivesupport@gmail.com">helperhivesupport@gmail.com</a>, or just message Sven directly — whichever is easier.</p>
+    <p>The more of this you can include, the faster it gets fixed:</p>
+    <ol class="steps">
+      <li><span><strong>Which phone</strong> you have, and which Android version (Settings → About phone)</span></li>
+      <li><span><strong>What you did</strong>, step by step, right before it went wrong</span></li>
+      <li><span><strong>What you expected</strong>, versus what actually happened</span></li>
+      <li><span><strong>A screenshot or screen recording</strong> — single most useful thing you can send</span></li>
+    </ol>
+    <p>Small stuff counts: a button that's hard to reach, wording that confused you, a screen that felt slow. Honest reactions beat polite ones — you can't hurt our feelings here.</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="hex">7</span><h2>If something goes wrong</h2></div>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th scope="col">What you're seeing</th><th scope="col">What to try</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>"Item not found" on the Play Store</td>
+            <td>You haven't accepted the opt-in link yet, or you accepted it with a different Google account than the one on your phone. Open the link again and check which account is signed in.</td>
+          </tr>
+          <tr>
+            <td>The app shows up but won't install</td>
+            <td>An older copy may already be on the phone — including inside <strong>Second space, Dual apps or a work profile</strong> on Xiaomi, Samsung and similar. Uninstall it everywhere, then install from Play.</td>
+          </tr>
+          <tr>
+            <td>Google sign-in fails or spins forever</td>
+            <td>Check you installed from Play rather than a sideloaded APK file. If it still fails, tell us which Google account you used.</td>
+          </tr>
+          <tr>
+            <td>No notifications arriving</td>
+            <td>Settings → Apps → HelperHive → Notifications, and turn them on. Also check that battery saver isn't restricting the app.</td>
+          </tr>
+          <tr>
+            <td>"Update required"</td>
+            <td>Update from Play — we may ship fixes during the test.</td>
+          </tr>
+          <tr>
+            <td>"We'll be right back"</td>
+            <td>That's maintenance mode; we're fixing something on our end. Try again shortly.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="hex">8</span><h2>The 14 days</h2></div>
+    <div class="timeline">
+      <div class="tl-row">
+        <span class="tl-day">Day 0</span>
+        <span class="tl-text">You accept the opt-in link and install from Play. <strong>This is when your clock starts.</strong></span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-day">Days 1–13</span>
+        <span class="tl-text">Keep it installed. Use it whenever you feel like it — there's nothing you have to do daily.</span>
+      </div>
+      <div class="tl-row finish">
+        <span class="tl-day">Day 14</span>
+        <span class="tl-text">We apply to Google for public launch.</span>
+      </div>
+    </div>
+    <div class="note alert">
+      <span class="note-title">The one thing that breaks it</span>
+      <p>Opting out or uninstalling early. If the count drops under 12, the clock restarts from zero for everybody. If you decide you're out, tell us <strong>before</strong> you leave so we can line up a replacement.</p>
+    </div>
+  </section>
+
+  <div class="signoff">
+    <p class="big">Thank you — genuinely. This app doesn't get published without you.</p>
+    <p class="small">HelperHive &middot; Philippines &middot; questions to <a href="mailto:helperhivesupport@gmail.com">helperhivesupport@gmail.com</a> &middot; <a href="https://sventlasic.github.io/">sventlasic.github.io</a></p>
+  </div>
+
+</div>
+
+<script>
+  (function () {
+    var boxes = Array.prototype.slice.call(document.querySelectorAll('.checklist input'));
+    var progress = document.getElementById('progress');
+    var KEY = 'helperhive-tester-checklist';
+
+    function keyFor(box) {
+      var list = box.closest('.checklist').getAttribute('data-list');
+      var boxesInList = Array.prototype.slice.call(box.closest('.checklist').querySelectorAll('input'));
+      return list + ':' + boxesInList.indexOf(box);
+    }
+
+    function load() {
+      try {
+        var raw = window.localStorage.getItem(KEY);
+        return raw ? JSON.parse(raw) : {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function save(state) {
+      try {
+        window.localStorage.setItem(KEY, JSON.stringify(state));
+      } catch (e) { /* private mode, blocked storage — the page still works */ }
+    }
+
+    function render() {
+      var done = boxes.filter(function (b) { return b.checked; }).length;
+      progress.textContent = done + ' of ' + boxes.length + ' done';
+    }
+
+    var state = load();
+    boxes.forEach(function (box) {
+      if (state[keyFor(box)]) { box.checked = true; }
+      box.addEventListener('change', function () {
+        state[keyFor(box)] = box.checked;
+        save(state);
+        render();
+      });
+    });
+    render();
+  })();
+</script>
+</body>
+</html>
