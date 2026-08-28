@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Functional Requirements Specification for HelperHive V1 - 118 numbered, testable requirements covering sign-in, profiles, browsing, messaging, job posts, notifications, privacy and moderation.">
+<meta property="og:title" content="HelperHive Functional Requirements">
+<meta property="og:description" content="118 numbered, testable requirements for HelperHive V1, filterable by ID or priority.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://sventlasic.github.io/helperhive/frs.html">
+<meta name="theme-color" content="#0F2D3D">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128203;</text></svg>">
+<title>HelperHive Functional Requirements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+
+<style>
+  :root {
+    --ground:      #F7F4EF;
+    --surface:     #FFFFFF;
+    --surface-2:   #F1ECE4;
+    --ink:         #0F2D3D;
+    --ink-soft:    #3D5A69;
+    --muted:       #6B7A8D;
+    --line:        #DDE3EB;
+    --line-soft:   #E9E4DB;
+    --teal:        #1A9E8F;
+    --teal-deep:   #147A6E;
+    --teal-wash:   #E6F7F5;
+    --coral:       #E8634A;
+    --coral-deep:  #B8402A;
+    --coral-wash:  #FDEDE9;
+    --honey:       #F5A623;
+    --honey-deep:  #8A5B05;
+    --honey-wash:  #FCF2DF;
+    --shadow:      0 1px 2px rgba(15,45,61,.05), 0 10px 24px -18px rgba(15,45,61,.35);
+
+    --measure: 40rem;
+    --step--2: .6875rem;
+    --step--1: .8125rem;
+    --step-0:  1rem;
+    --step-1:  1.1875rem;
+    --step-2:  1.4375rem;
+    --step-3:  2.5rem;
+
+    --font-display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+    --font-body: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:      #0A1F2E;
+      --surface:     #0F2D3D;
+      --surface-2:   #16394A;
+      --ink:         #EAF2F3;
+      --ink-soft:    #C3D6DC;
+      --muted:       #8FAEBC;
+      --line:        #23485A;
+      --line-soft:   #1B3E4F;
+      --teal:        #34C6B4;
+      --teal-deep:   #7FE3D6;
+      --teal-wash:   #10333A;
+      --coral:       #FF8368;
+      --coral-deep:  #FFB6A3;
+      --coral-wash:  #3A2019;
+      --honey:       #FFC15E;
+      --honey-deep:  #FFD79A;
+      --honey-wash:  #3A2C11;
+      --shadow:      0 1px 2px rgba(0,0,0,.3), 0 14px 30px -20px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:      #0A1F2E;
+    --surface:     #0F2D3D;
+    --surface-2:   #16394A;
+    --ink:         #EAF2F3;
+    --ink-soft:    #C3D6DC;
+    --muted:       #8FAEBC;
+    --line:        #23485A;
+    --line-soft:   #1B3E4F;
+    --teal:        #34C6B4;
+    --teal-deep:   #7FE3D6;
+    --teal-wash:   #10333A;
+    --coral:       #FF8368;
+    --coral-deep:  #FFB6A3;
+    --coral-wash:  #3A2019;
+    --honey:       #FFC15E;
+    --honey-deep:  #FFD79A;
+    --honey-wash:  #3A2C11;
+    --shadow:      0 1px 2px rgba(0,0,0,.3), 0 14px 30px -20px rgba(0,0,0,.8);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page { max-width: calc(var(--measure) + 6rem); margin: 0 auto; padding: 0 1.25rem 4rem; }
+
+  /* ---------- Masthead ---------- */
+  .masthead { padding: 2.75rem 0 1.75rem; display: flex; flex-direction: column; gap: 1rem; }
+  .brand { display: flex; align-items: center; gap: .6rem; }
+  .brand-name { font-family: var(--font-display); font-weight: 800; font-size: 1rem; letter-spacing: -.01em; }
+  .eyebrow {
+    font-family: var(--font-mono); font-size: var(--step--2); font-weight: 500;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--teal-deep); margin: 0 0 .4rem;
+  }
+  h1 {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(2rem, 7.5vw, var(--step-3));
+    line-height: 1.03; letter-spacing: -.035em; text-wrap: balance; margin: 0;
+  }
+  .lede { margin: 0; max-width: var(--measure); font-size: var(--step-1); line-height: 1.5; color: var(--ink-soft); }
+
+  .docmeta {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: .1rem 1.5rem; margin-top: .5rem;
+    border-top: 1px solid var(--line-soft); padding-top: 1rem;
+  }
+  .docmeta div { padding: .3rem 0; }
+  .docmeta dt {
+    font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: .1em;
+    text-transform: uppercase; color: var(--muted); margin: 0 0 .15rem;
+  }
+  .docmeta dd { margin: 0; font-size: var(--step--1); font-weight: 500; }
+
+  /* ---------- Stats ---------- */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr)); gap: .6rem; margin: 1.75rem 0 0; }
+  .stat {
+    background: var(--surface); border: 1px solid var(--line-soft); border-radius: 12px;
+    padding: .8rem .9rem; box-shadow: var(--shadow);
+  }
+  .stat-n {
+    font-family: var(--font-display); font-weight: 700; font-size: 1.75rem;
+    letter-spacing: -.03em; line-height: 1.1; font-variant-numeric: tabular-nums; display: block;
+  }
+  .stat-l {
+    font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: .1em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .stat.must .stat-n { color: var(--coral-deep); }
+  .stat.should .stat-n { color: var(--honey-deep); }
+  .stat.could .stat-n { color: var(--teal-deep); }
+
+  /* ---------- Filter bar ---------- */
+  .filterbar {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--ground);
+    padding: .85rem 0;
+    margin: 2rem 0 1.5rem;
+    border-bottom: 1px solid var(--line-soft);
+    display: flex; flex-wrap: wrap; gap: .6rem; align-items: center;
+  }
+  .filterbar input[type="search"] {
+    flex: 1 1 12rem; min-width: 0;
+    font-family: var(--font-body); font-size: var(--step--1);
+    padding: .55rem .8rem;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line); border-radius: 9px;
+  }
+  .filterbar input[type="search"]::placeholder { color: var(--muted); }
+  .chips { display: flex; gap: .3rem; }
+  .chip {
+    font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: .06em;
+    text-transform: uppercase; padding: .45rem .7rem; border-radius: 999px;
+    background: var(--surface); color: var(--muted);
+    border: 1px solid var(--line); cursor: pointer;
+  }
+  .chip[aria-pressed="true"] { background: var(--ink); color: var(--ground); border-color: var(--ink); }
+  .shown {
+    font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: .08em;
+    text-transform: uppercase; color: var(--muted); margin-left: auto; white-space: nowrap;
+  }
+
+  /* ---------- Sections ---------- */
+  section { margin: 0 0 2.75rem; }
+  section[hidden] { display: none; }
+  .sec-head { display: flex; align-items: baseline; gap: .7rem; margin: 0 0 .3rem; flex-wrap: wrap; }
+  .sec-num {
+    font-family: var(--font-mono); font-size: var(--step--1); font-weight: 600;
+    color: var(--teal-deep);
+  }
+  h2 {
+    font-family: var(--font-display); font-weight: 700; font-size: var(--step-2);
+    letter-spacing: -.025em; line-height: 1.15; margin: 0; text-wrap: balance;
+  }
+  .sec-note { margin: 0 0 1rem; font-size: var(--step--1); color: var(--muted); max-width: var(--measure); }
+  h3 {
+    font-family: var(--font-display); font-weight: 700; font-size: var(--step-1);
+    letter-spacing: -.015em; margin: 2.25rem 0 .7rem;
+  }
+  p { max-width: var(--measure); margin: 0 0 .9rem; }
+  a { color: var(--teal-deep); text-underline-offset: .18em; }
+  a:focus-visible, input:focus-visible, .chip:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+  strong { font-weight: 600; }
+
+  /* ---------- Requirement rows ---------- */
+  .reqs { display: flex; flex-direction: column; border-top: 1px solid var(--line-soft); }
+  .req {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "id pri" "text text";
+    gap: .3rem .8rem;
+    padding: .85rem .2rem;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .req[hidden] { display: none; }
+  .rid {
+    grid-area: id;
+    font-family: var(--font-mono); font-size: var(--step--1); font-weight: 600;
+    color: var(--teal-deep); letter-spacing: -.01em;
+  }
+  .req-text { grid-area: text; margin: 0; font-size: var(--step--1); line-height: 1.55; color: var(--ink-soft); max-width: none; }
+  .req-text strong { color: var(--ink); }
+  .pri {
+    grid-area: pri;
+    font-family: var(--font-mono); font-size: var(--step--2); font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase;
+    padding: .1rem .5rem; border-radius: 999px; height: fit-content; white-space: nowrap;
+  }
+  .pri.m { background: var(--coral-wash); color: var(--coral-deep); }
+  .pri.s { background: var(--honey-wash); color: var(--honey-deep); }
+  .pri.c { background: var(--teal-wash); color: var(--teal-deep); }
+
+  @media (min-width: 46rem) {
+    .req {
+      grid-template-columns: 8.5rem 1fr 4.5rem;
+      grid-template-areas: "id text pri";
+      align-items: baseline;
+      gap: 1rem;
+    }
+    .pri { justify-self: end; }
+  }
+
+  /* ---------- Generic tables ---------- */
+  .tablewrap { overflow-x: auto; max-width: var(--measure); margin: 0 0 1.25rem; }
+  table { border-collapse: collapse; width: 100%; font-size: var(--step--1); }
+  th, td { text-align: left; padding: .6rem .75rem; vertical-align: top; border-bottom: 1px solid var(--line-soft); }
+  th {
+    font-family: var(--font-mono); font-size: var(--step--2); letter-spacing: .1em;
+    text-transform: uppercase; color: var(--muted); font-weight: 500; white-space: nowrap;
+  }
+  td:first-child { font-weight: 600; color: var(--ink); }
+  td code, p code {
+    font-family: var(--font-mono); font-size: .95em;
+    background: var(--surface-2); padding: .05rem .3rem; border-radius: 4px;
+  }
+
+  ul.plain { margin: 0 0 1rem; padding-left: 1.15rem; max-width: var(--measure); display: flex; flex-direction: column; gap: .4rem; font-size: var(--step--1); color: var(--ink-soft); }
+  ul.plain li::marker { color: var(--teal); }
+
+  .note {
+    background: var(--surface); border: 1px solid var(--line-soft); border-radius: 12px;
+    padding: .9rem 1rem; margin: 0 0 1.25rem; max-width: var(--measure);
+    font-size: var(--step--1); line-height: 1.55; color: var(--ink-soft);
+  }
+  .note p { margin: 0; font-size: inherit; max-width: none; }
+  .note-title {
+    display: block; font-family: var(--font-mono); font-size: var(--step--2);
+    letter-spacing: .12em; text-transform: uppercase; margin-bottom: .3rem;
+  }
+  .note.key { background: var(--honey-wash); border-color: transparent; color: var(--honey-deep); }
+  .note.key .note-title { color: var(--honey-deep); }
+
+  .empty { display: none; font-size: var(--step--1); color: var(--muted); padding: 2rem 0; }
+  .empty[data-on="true"] { display: block; }
+
+  footer {
+    margin-top: 3rem; padding-top: 1.75rem; border-top: 1px solid var(--line-soft);
+    font-size: var(--step--1); color: var(--muted);
+  }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="masthead">
+    <div class="brand">
+      <svg width="24" height="27" viewBox="0 0 26 29" aria-hidden="true">
+        <path d="M13 0 26 7.25v14.5L13 29 0 21.75V7.25Z" fill="var(--teal)"/>
+        <path d="M13 6.6 20.2 10.6v8L13 22.6 5.8 18.6v-8Z" fill="var(--surface)"/>
+        <path d="M13 11.2 16.2 13v3.6L13 18.4 9.8 16.6V13Z" fill="var(--teal)"/>
+      </svg>
+      <span class="brand-name">HelperHive</span>
+    </div>
+
+    <div>
+      <p class="eyebrow">Functional Requirements Specification</p>
+      <h1>What the app is supposed to do</h1>
+    </div>
+
+    <p class="lede">
+      Every behaviour HelperHive V1 commits to, written so it can be passed or failed by observation.
+      Each requirement has a stable ID — cite it in test cases and defect reports.
+    </p>
+
+    <dl class="docmeta">
+      <div><dt>Product</dt><dd>HelperHive Android</dd></div>
+      <div><dt>App version</dt><dd>1.0.0 &middot; code 4</dd></div>
+      <div><dt>Package</dt><dd>com.helperhive.app</dd></div>
+      <div><dt>Document</dt><dd>v1.0 &middot; 2026-08-28</dd></div>
+      <div><dt>Status</dt><dd>Closed-testing baseline</dd></div>
+    </dl>
+
+    <div class="stats">
+      <div class="stat"><span class="stat-n">118</span><span class="stat-l">Requirements</span></div>
+      <div class="stat must"><span class="stat-n">95</span><span class="stat-l">Must</span></div>
+      <div class="stat should"><span class="stat-n">21</span><span class="stat-l">Should</span></div>
+      <div class="stat could"><span class="stat-n">2</span><span class="stat-l">Could</span></div>
+    </div>
+  </header>
+
+  <div class="filterbar">
+    <input type="search" id="q" placeholder="Filter by ID or keyword — try &ldquo;FR-JOB&rdquo; or &ldquo;block&rdquo;" aria-label="Filter requirements">
+    <div class="chips" role="group" aria-label="Filter by priority">
+      <button class="chip" data-pri="all" aria-pressed="true">All</button>
+      <button class="chip" data-pri="M" aria-pressed="false">Must</button>
+      <button class="chip" data-pri="S" aria-pressed="false">Should</button>
+      <button class="chip" data-pri="C" aria-pressed="false">Could</button>
+    </div>
+    <span class="shown" id="shown">118 shown</span>
+  </div>
+
+  <p class="empty" id="empty">No requirement matches that filter.</p>
+
+  <section data-ctx="true">
+    <div class="sec-head"><span class="sec-num">1</span><h2>Scope</h2></div>
+    <p>HelperHive is an Android marketplace for the Philippines connecting <strong>employers</strong> who need household help with <strong>helpers</strong> who offer that work. It provides discovery, a job board, direct messaging, reviews, and safety tooling. It is funded by advertising — no fees, commission, or payments are handled in the app.</p>
+
+    <h3>Roles</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th scope="col">Role</th><th scope="col">Sees</th><th scope="col">Profile</th></tr></thead>
+        <tbody>
+          <tr><td>Employer</td><td>Helper listings</td><td>Name + city (1 step)</td></tr>
+          <tr><td>Helper</td><td>Employer listings</td><td>Photo, city, skills, schedule, bio (5 steps)</td></tr>
+          <tr><td>Administrator</td><td>Moderation screens</td><td>Server-assigned; not a public profile</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Constraints</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th scope="col">ID</th><th scope="col">Constraint</th></tr></thead>
+        <tbody>
+          <tr><td>C-1</td><td>Google Sign-In is the only sign-in method exposed. Facebook is implemented but hidden behind a feature flag.</td></tr>
+          <tr><td>C-2</td><td>No iOS build in V1.</td></tr>
+          <tr><td>C-3</td><td>Profile photos stored inline as compressed base64 on the user record; Firebase Storage is not used.</td></tr>
+          <tr><td>C-4</td><td>Chat is <strong>text only</strong>. Image messages are not sent.</td></tr>
+          <tr><td>C-5</td><td>Role cannot be switched after sign-up.</td></tr>
+          <tr><td>C-6</td><td>Location is city-level only; GPS coordinates are never persisted.</td></tr>
+          <tr><td>C-7</td><td>All list queries are paginated; nothing fetches a whole collection.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <span class="note-title">Reading the priorities</span>
+      <p><strong>Must</strong> = release-blocking for V1. <strong>Should</strong> and <strong>Could</strong> may ship incomplete without blocking release, but still report them when they fail.</p>
+    </div>
+  </section>
+
+  <section data-reqs="true" id="s-gate">
+    <div class="sec-head"><span class="sec-num">2.1</span><h2>Startup and availability gate</h2></div>
+    <p class="sec-note">Prefix <code>FR-GATE</code> — what happens before the app is usable.</p>
+    <div class="reqs">
+      <div class="req" data-pri="M"><span class="rid">FR-GATE-01</span><p class="req-text">On every app open the system shall evaluate availability in this order: <strong>maintenance first, then version</strong>.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-GATE-02</span><p class="req-text">When maintenance mode is on, the system shall display a non-dismissible Maintenance screen in place of the entire app, showing the configured message and estimated time.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-GATE-03</span><p class="req-text">When the installed version is below the minimum and force-update is on, the system shall display a non-dismissible Force Update screen with a link to the Play Store listing.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-GATE-04</span><p class="req-text">When the version is outdated but force-update is off, the system shall display a dismissible Optional Update prompt offering &ldquo;Maybe Later&rdquo;.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="S"><span class="rid">FR-GATE-05</span><p class="req-text">Gate configuration shall be read through a live listener, so changes reach already-running clients without a restart.</p><span class="pri s">Should</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-GATE-06</span><p class="req-text">The gate shall <strong>fail open</strong>: if the configuration is missing or the listener errors, the user is admitted rather than locked out.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-GATE-07</span><p class="req-text">Version thresholds shall never be hardcoded in the client.</p><span class="pri m">Must</span></div>
+    </div>
+  </section>
+
+  <section data-reqs="true" id="s-onb">
+    <div class="sec-head"><span class="sec-num">2.2</span><h2>Onboarding</h2></div>
+    <p class="sec-note">Prefix <code>FR-ONB</code></p>
+    <div class="reqs">
+      <div class="req" data-pri="M"><span class="rid">FR-ONB-01</span><p class="req-text">On first install the system shall display a splash screen followed by onboarding slides introducing the marketplace, the job board, and safety.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-ONB-02</span><p class="req-text">Onboarding shall be shown once per install and skipped on subsequent launches.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="C"><span class="rid">FR-ONB-03</span><p class="req-text">The splash screen shall render a light or dark variant according to the device colour scheme.</p><span class="pri c">Could</span></div>
+    </div>
+  </section>
+
+  <section data-reqs="true" id="s-auth">
+    <div class="sec-head"><span class="sec-num">2.3</span><h2>Authentication and consent</h2></div>
+    <p class="sec-note">Prefix <code>FR-AUTH</code></p>
+    <div class="reqs">
+      <div class="req" data-pri="M"><span class="rid">FR-AUTH-01</span><p class="req-text">The system shall allow sign-in with a Google account.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-AUTH-02</span><p class="req-text">The system shall not display a Facebook sign-in control while the Facebook feature flag is disabled.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-AUTH-03</span><p class="req-text">The system shall require acceptance of the Terms and Privacy Policy before sign-in completes; a user who does not accept shall not reach the application.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-AUTH-04</span><p class="req-text">Legal text shall be fetched from the remote configuration at display time, so it can be updated without an app release.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-AUTH-05</span><p class="req-text">On acceptance the system shall record the acceptance timestamp on the user record.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-AUTH-06</span><p class="req-text">After first sign-in the system shall require the user to select exactly one role: Employer or Helper.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-AUTH-07</span><p class="req-text">The selected role shall persist and shall not be changeable within V1.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-AUTH-08</span><p class="req-text">Returning users with a completed profile shall go directly to Home, bypassing onboarding, terms, role, and setup.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="S"><span class="rid">FR-AUTH-09</span><p class="req-text">The system shall present a human-readable message for each sign-in failure mode (cancelled, network, account collision) rather than a raw error.</p><span class="pri s">Should</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-AUTH-10</span><p class="req-text">The system shall provide sign-out, which clears the session and de-registers the device push token.</p><span class="pri m">Must</span></div>
+    </div>
+  </section>
+
+  <section data-reqs="true" id="s-prof">
+    <div class="sec-head"><span class="sec-num">2.4</span><h2>Profile setup</h2></div>
+    <p class="sec-note">Prefix <code>FR-PROF</code></p>
+    <div class="reqs">
+      <div class="req" data-pri="M"><span class="rid">FR-PROF-01</span><p class="req-text">Helpers shall complete a five-step profile: photo, location, skills, schedule, bio.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-PROF-02</span><p class="req-text">Employers shall complete a one-step profile: name and location.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-PROF-03</span><p class="req-text">The system shall offer two interchangeable ways to set location: GPS auto-detect, or a manual region &rarr; city picker.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-PROF-04</span><p class="req-text">If location permission is denied or GPS fails, the system shall fall back to the manual picker without loss of progress.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-PROF-05</span><p class="req-text">GPS coordinates shall be used in memory only to derive a city name, and shall never be written to the database.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-PROF-06</span><p class="req-text">Skills shall be chosen from the fixed catalogue of 12 services (cleaning, cooking, laundry, childcare, elderly care, pet care, grocery, plant care, driving, tutoring, medical assist, babysitting).</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-PROF-07</span><p class="req-text">A selected profile photo shall be compressed and stored inline on the user record.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-PROF-08</span><p class="req-text">The system shall mark the profile complete only when all required steps are satisfied, and shall resume an incomplete setup at the correct step.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="S"><span class="rid">FR-PROF-09</span><p class="req-text">Users shall be able to edit their own profile after setup.</p><span class="pri s">Should</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-PROF-10</span><p class="req-text">The system shall never request or store street address, barangay, ZIP, phone number, or identity documents.</p><span class="pri m">Must</span></div>
+    </div>
+  </section>
+
+  <section data-reqs="true" id="s-brw">
+    <div class="sec-head"><span class="sec-num">2.5</span><h2>Browsing and listings</h2></div>
+    <p class="sec-note">Prefix <code>FR-BRW</code></p>
+    <div class="reqs">
+      <div class="req" data-pri="M"><span class="rid">FR-BRW-01</span><p class="req-text">Home shall show listings of the opposite role: employers see helpers, helpers see employers.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-BRW-02</span><p class="req-text">Listings shall be paginated at <strong>10 records per page</strong>, loading the next page on scroll.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-BRW-03</span><p class="req-text">The system shall provide a filter drawer supporting skills (multi-select), city, minimum rate, maximum rate, and availability.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-BRW-04</span><p class="req-text">The system shall provide sorting of listings.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="S"><span class="rid">FR-BRW-05</span><p class="req-text">The system shall provide a search overlay that matches listings by text and retains recent searches.</p><span class="pri s">Should</span></div>
+      <div class="req" data-pri="S"><span class="rid">FR-BRW-06</span><p class="req-text">Active filters shall be visible as chips and shall be individually clearable.</p><span class="pri s">Should</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-BRW-07</span><p class="req-text">When a query returns no records the system shall display an explicit empty state, distinct from a loading state.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="S"><span class="rid">FR-BRW-08</span><p class="req-text">Filter and search state shall survive navigation away from and back to Home.</p><span class="pri s">Should</span></div>
+      <div class="req" data-pri="C"><span class="rid">FR-BRW-09</span><p class="req-text">The system shall provide a manual refresh with a cooldown of 3 seconds between refreshes.</p><span class="pri c">Could</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-BRW-10</span><p class="req-text">Listings of users who have blocked, or been blocked by, the viewer shall be excluded.</p><span class="pri m">Must</span></div>
+    </div>
+  </section>
+
+  <section data-reqs="true" id="s-det">
+    <div class="sec-head"><span class="sec-num">2.6</span><h2>Profile detail and reviews</h2></div>
+    <p class="sec-note">Prefix <code>FR-DET</code></p>
+    <div class="reqs">
+      <div class="req" data-pri="M"><span class="rid">FR-DET-01</span><p class="req-text">Selecting a listing shall open a detail view showing skills, schedule, rate, city, bio, rating, and reviews.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-DET-02</span><p class="req-text">The detail view shall offer a <strong>Message</strong> action that opens or creates the conversation with that user.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-DET-03</span><p class="req-text">The detail view shall offer <strong>Share</strong> and <strong>Report</strong> actions.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-DET-04</span><p class="req-text">Reviews shall be paginated at <strong>10 per page</strong>.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-DET-05</span><p class="req-text">An employer shall be able to submit one review per helper, consisting of a 1&ndash;5 star rating and an optional comment.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-DET-06</span><p class="req-text">Submitting a review again for the same helper shall update the existing review rather than create a duplicate.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-DET-07</span><p class="req-text">The helper's aggregate rating and review count shall reflect submitted reviews.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="S"><span class="rid">FR-DET-08</span><p class="req-text">A helper with no reviews shall be presented as new rather than as zero-rated.</p><span class="pri s">Should</span></div>
+    </div>
+  </section>
+
+  <section data-reqs="true" id="s-msg">
+    <div class="sec-head"><span class="sec-num">2.7</span><h2>Messaging</h2></div>
+    <p class="sec-note">Prefix <code>FR-MSG</code></p>
+    <div class="reqs">
+      <div class="req" data-pri="M"><span class="rid">FR-MSG-01</span><p class="req-text">The system shall support one-to-one text conversations between an employer and a helper.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-MSG-02</span><p class="req-text">Exactly one conversation shall exist per employer&ndash;helper pair; opening a chat twice shall reuse the same thread.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-MSG-03</span><p class="req-text">Messages shall appear in both participants' clients in real time while the chat is open.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-MSG-04</span><p class="req-text">The message list shall load the most recent <strong>50</strong> messages per conversation.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-MSG-05</span><p class="req-text">The conversation list shall load up to <strong>100</strong> threads, ordered by most recent activity.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-MSG-06</span><p class="req-text">Each conversation shall display an unread count for the current user, cleared when the thread is opened.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="S"><span class="rid">FR-MSG-07</span><p class="req-text">The system shall show a &ldquo;seen&rdquo; indication to the sender once the recipient has opened the thread.</p><span class="pri s">Should</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-MSG-08</span><p class="req-text">A safety banner shall be displayed at the top of every conversation.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-MSG-09</span><p class="req-text">Empty or whitespace-only messages shall not be sent.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-MSG-10</span><p class="req-text">Image messages are out of scope for V1; the system shall send text only.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="S"><span class="rid">FR-MSG-11</span><p class="req-text">Administrator-originated support conversations shall be reply-locked when replies are disabled for that thread.</p><span class="pri s">Should</span></div>
+    </div>
+  </section>
+
+  <section data-reqs="true" id="s-saf">
+    <div class="sec-head"><span class="sec-num">2.8</span><h2>Safety: reporting and blocking</h2></div>
+    <p class="sec-note">Prefix <code>FR-SAF</code></p>
+    <div class="reqs">
+      <div class="req" data-pri="M"><span class="rid">FR-SAF-01</span><p class="req-text">The system shall offer <strong>Report</strong> and <strong>Block</strong> from within every conversation and from every profile detail view.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-SAF-02</span><p class="req-text">User reports shall accept one of: Inappropriate messages, Scam or fraud, Harassment or abuse, Fake profile, Other.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="S"><span class="rid">FR-SAF-03</span><p class="req-text">Selecting &ldquo;Other&rdquo; shall allow free-text entry of the reason.</p><span class="pri s">Should</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-SAF-04</span><p class="req-text">Post reports shall accept one of: Scam or fraud, Inappropriate content, Spam or misleading, Harassment or abuse, Other.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="S"><span class="rid">FR-SAF-05</span><p class="req-text">A submitted report shall be acknowledged in the UI, and a repeat report of the same target shall be indicated as already reported.</p><span class="pri s">Should</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-SAF-06</span><p class="req-text">Reports shall be write-only from the client: a client shall be able to create a report but never read the reports of others.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-SAF-07</span><p class="req-text">Blocking a user shall hide that user's listings and posts from the blocker, and shall prevent further messaging between the two parties.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-SAF-08</span><p class="req-text">The system shall provide a list of blocked users with the ability to unblock.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="S"><span class="rid">FR-SAF-09</span><p class="req-text">A post that reaches <strong>3 reports</strong> shall be hidden automatically.</p><span class="pri s">Should</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-SAF-10</span><p class="req-text">Report notifications sent to the operator shall carry identifiers only, never message content or personal details.</p><span class="pri m">Must</span></div>
+    </div>
+  </section>
+
+  <section data-reqs="true" id="s-job">
+    <div class="sec-head"><span class="sec-num">2.9</span><h2>Job posts and applications</h2></div>
+    <p class="sec-note">Prefix <code>FR-JOB</code></p>
+    <div class="reqs">
+      <div class="req" data-pri="M"><span class="rid">FR-JOB-01</span><p class="req-text">Employers shall be able to publish job orders; helpers shall be able to publish &ldquo;looking for work&rdquo; notices.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-JOB-02</span><p class="req-text">The board shall provide tabs for <strong>All</strong>, <strong>Urgent</strong>, and <strong>Mine</strong>, and sorting by newest or oldest.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-JOB-03</span><p class="req-text">Posts shall be paginated at <strong>10 per page</strong>.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-JOB-04</span><p class="req-text">A user shall be limited to <strong>1 urgent</strong> and <strong>2 regular</strong> posts per calendar day.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="S"><span class="rid">FR-JOB-05</span><p class="req-text">Remaining quota shall be displayed on the compose screen before submission.</p><span class="pri s">Should</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-JOB-06</span><p class="req-text">Urgent posts shall expire <strong>24 hours</strong> after creation; regular posts after <strong>7 days</strong>. Expired posts shall not appear on the board.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-JOB-07</span><p class="req-text">The system shall reject post text and application pitches that appear to contain a phone number, an email address, or a long digit run.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-JOB-08</span><p class="req-text">A user shall be able to apply to a post with a short pitch, and shall be able to apply only once per post.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-JOB-09</span><p class="req-text">The post author shall see the applicant list, each row showing the applicant's city and how long ago they applied.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="S"><span class="rid">FR-JOB-10</span><p class="req-text">The applicant list shall load at most <strong>30</strong> applications per post.</p><span class="pri s">Should</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-JOB-11</span><p class="req-text">The author shall be able to <strong>accept</strong> an application, which opens a conversation with that applicant, or <strong>reject</strong> it.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="S"><span class="rid">FR-JOB-12</span><p class="req-text">Rejection shall require confirmation before it is applied.</p><span class="pri s">Should</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-JOB-13</span><p class="req-text">An applicant shall be notified when their application is accepted or rejected.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-JOB-14</span><p class="req-text">The author shall be able to remove their own post.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="S"><span class="rid">FR-JOB-15</span><p class="req-text">Application status shall be re-fetched when the screen regains focus, so a stale status is not displayed.</p><span class="pri s">Should</span></div>
+    </div>
+  </section>
+
+  <section data-reqs="true" id="s-not">
+    <div class="sec-head"><span class="sec-num">2.10</span><h2>Notifications</h2></div>
+    <p class="sec-note">Prefix <code>FR-NOT</code></p>
+    <div class="reqs">
+      <div class="req" data-pri="M"><span class="rid">FR-NOT-01</span><p class="req-text">The system shall request the Android notification permission through a runtime prompt, and shall function without it.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-NOT-02</span><p class="req-text">The system shall register the device push token on sign-in and remove it on sign-out.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-NOT-03</span><p class="req-text">The system shall deliver push notifications for: new messages, new applications on the user's post, application rejection, new reviews, and operator broadcasts.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-NOT-04</span><p class="req-text">While the app is in the foreground, an event shall raise an in-app banner rather than a system notification.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-NOT-05</span><p class="req-text">Tapping a notification shall deep-link to the relevant screen (conversation, post, or profile), whether the app was backgrounded or closed.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-NOT-06</span><p class="req-text">The system shall maintain a notification history screen with a bell icon and an unread badge.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="S"><span class="rid">FR-NOT-07</span><p class="req-text">Repeated messages within one conversation shall collapse into a single history row rather than accumulating.</p><span class="pri s">Should</span></div>
+      <div class="req" data-pri="S"><span class="rid">FR-NOT-08</span><p class="req-text">The system shall provide per-category notification preferences: messages, matches, reviews, hiring, updates &mdash; with updates off by default.</p><span class="pri s">Should</span></div>
+      <div class="req" data-pri="S"><span class="rid">FR-NOT-09</span><p class="req-text">Notifications shall be posted to a high-importance channel with the custom notification sound.</p><span class="pri s">Should</span></div>
+    </div>
+  </section>
+
+  <section data-reqs="true" id="s-acc">
+    <div class="sec-head"><span class="sec-num">2.11</span><h2>Account, privacy, and data</h2></div>
+    <p class="sec-note">Prefix <code>FR-ACC</code></p>
+    <div class="reqs">
+      <div class="req" data-pri="M"><span class="rid">FR-ACC-01</span><p class="req-text">The system shall provide a Privacy &amp; Security screen listing what is collected and the controls available.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-ACC-02</span><p class="req-text">The user shall be able to delete their account from within the app.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-ACC-03</span><p class="req-text">Deletion shall require re-authentication; abandoning it shall delete nothing.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-ACC-04</span><p class="req-text">Deletion shall be immediate and irreversible, removing the sign-in account, the user record, and the helper record.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-ACC-05</span><p class="req-text">After deletion the user's name shall be replaced with &ldquo;Deleted user&rdquo; in conversations, and their posts shall be removed.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-ACC-06</span><p class="req-text">Content the client cannot delete (reviews, notifications, message sender names, applications) shall retain a display name only &mdash; never email or photo &mdash; and this shall be disclosed in the Privacy Policy.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-ACC-07</span><p class="req-text">The system shall provide opt-out toggles for usage analytics and crash reporting, and shall honour them.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-ACC-08</span><p class="req-text">The system shall store only: name, email, profile photo, and city.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-ACC-09</span><p class="req-text">Sensitive data shall never be written to device storage.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-ACC-10</span><p class="req-text">A deletion route shall exist for users who cannot access the app, published at a public URL.</p><span class="pri m">Must</span></div>
+    </div>
+  </section>
+
+  <section data-reqs="true" id="s-ads">
+    <div class="sec-head"><span class="sec-num">2.12</span><h2>Advertising</h2></div>
+    <p class="sec-note">Prefix <code>FR-ADS</code> &mdash; closed-testing builds serve Google <strong>test</strong> ads only.</p>
+    <div class="reqs">
+      <div class="req" data-pri="M"><span class="rid">FR-ADS-01</span><p class="req-text">A banner advertisement shall be displayed on the main tab screens.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-ADS-02</span><p class="req-text">Banners shall not overlap interactive controls or the system navigation bar.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-ADS-03</span><p class="req-text">No advertisement shall be placed on the compose or apply screens.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="S"><span class="rid">FR-ADS-04</span><p class="req-text">When the daily post quota is exhausted, the system shall offer an opt-in rewarded video to unlock one additional post.</p><span class="pri s">Should</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-ADS-05</span><p class="req-text">An additional post shall be granted only on a completed view that earns the reward; dismissing early shall grant nothing.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-ADS-06</span><p class="req-text">Rewarded unlocks shall be capped at <strong>2 per day</strong>, giving a ceiling of 5 posts per day.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-ADS-07</span><p class="req-text">A reward shall be credited exactly once, with no double-credit on repeated callbacks.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-ADS-08</span><p class="req-text">Closed-testing builds shall use test ad units only.</p><span class="pri m">Must</span></div>
+    </div>
+  </section>
+
+  <section data-reqs="true" id="s-adm">
+    <div class="sec-head"><span class="sec-num">2.13</span><h2>Administration and moderation</h2></div>
+    <p class="sec-note">Prefix <code>FR-ADM</code> &mdash; operator-facing, not reachable by ordinary users. Listed for completeness.</p>
+    <div class="reqs">
+      <div class="req" data-pri="M"><span class="rid">FR-ADM-01</span><p class="req-text">Administrator screens shall be reachable only by server-designated administrator accounts.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-ADM-02</span><p class="req-text">Administrators shall be able to ban and unban a user, and to restrict and unrestrict a user's ability to post.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-ADM-03</span><p class="req-text">A banned user shall be shown a suspension screen with a support contact route, and shall not reach the application.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="S"><span class="rid">FR-ADM-04</span><p class="req-text">Administrators shall be able to send a broadcast notification to all users, with a title of at most 100 characters and a body of at most 500.</p><span class="pri s">Should</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-ADM-05</span><p class="req-text">Administrators shall be able to toggle maintenance mode.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-ADM-06</span><p class="req-text">Moderation actions shall be executed server-side through a command queue rather than by direct client writes.</p><span class="pri m">Must</span></div>
+      <div class="req" data-pri="M"><span class="rid">FR-ADM-07</span><p class="req-text">Administrators shall be able to remove a post.</p><span class="pri m">Must</span></div>
+    </div>
+  </section>
+
+  <section data-ctx="true">
+    <div class="sec-head"><span class="sec-num">3</span><h2>Data and non-functional</h2></div>
+
+    <h3>What is stored</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th scope="col">Collection</th><th scope="col">Holds</th></tr></thead>
+        <tbody>
+          <tr><td>users</td><td>Name, email, photo, role, city, terms acceptance, push tokens</td></tr>
+          <tr><td>helpers</td><td>Public listing: skills, rate, availability, schedule, bio, rating, review count</td></tr>
+          <tr><td>conversations</td><td>Threads, unread counts, last-read timestamps, block list</td></tr>
+          <tr><td>messages</td><td>Text and sender only</td></tr>
+          <tr><td>reviews</td><td>One per employer&ndash;helper pair, enforced by document id</td></tr>
+          <tr><td>posts / applications</td><td>Job board, expiry timestamps, quota counters, pitches</td></tr>
+          <tr><td>reports</td><td>Client-create only, never client-readable</td></tr>
+          <tr><td>notifications</td><td>In-app feed, server-written</td></tr>
+          <tr><td>appConfig</td><td>Version/maintenance gate and legal text</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note key">
+      <span class="note-title">Data prohibition &mdash; DR-1</span>
+      <p>GPS coordinates, street address, barangay, ZIP, phone number, and identity documents shall never be persisted. Location fields hold city, region, and country names only.</p>
+    </div>
+
+    <h3>Non-functional</h3>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th scope="col">ID</th><th scope="col">Requirement</th></tr></thead>
+        <tbody>
+          <tr><td>NFR-01</td><td>Every remote call shall be wrapped in error handling and shall surface a loading state and an error state.</td></tr>
+          <tr><td>NFR-02</td><td>No query shall fetch an unbounded collection; all lists shall be paginated or explicitly limited.</td></tr>
+          <tr><td>NFR-03</td><td>Security rules shall enforce access server-side; the client shall never be the only check.</td></tr>
+          <tr><td>NFR-04</td><td>The app shall degrade gracefully without network access &mdash; an error, not a crash or an indefinite hang.</td></tr>
+          <tr><td>NFR-05</td><td>Crashes shall be captured with stack traces in release builds, subject to the user's opt-out.</td></tr>
+          <tr><td>NFR-06</td><td>The app shall be usable on a small phone screen in portrait, controls reachable one-handed.</td></tr>
+          <tr><td>NFR-07</td><td>Secrets shall not be committed to version control.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Out of scope for V1</h3>
+    <ul class="plain">
+      <li>Apple/iOS build and Apple Sign-In</li>
+      <li>In-app hiring workflow (mark-as-hired, availability blocking) and role switching</li>
+      <li>Countries other than the Philippines; full-text search</li>
+      <li>In-app voice calls; daily digest job alerts; image messages</li>
+      <li>Payments of any kind</li>
+    </ul>
+  </section>
+
+  <section data-ctx="true">
+    <div class="sec-head"><span class="sec-num">4</span><h2>How to cite this in a defect report</h2></div>
+    <p>Name the requirement the behaviour violates. A report that does can be triaged without reproduction guesswork; one that does not usually cannot.</p>
+    <div class="note">
+      <span class="note-title">Example</span>
+      <p><strong>FR-JOB-06 &mdash; FAIL.</strong> Urgent post created 2026-08-27 09:00 was still visible on the All tab at 2026-08-28 11:00 (26 h). Redmi Note 12, Android 14. Screenshot attached.</p>
+    </div>
+    <p>Requirements marked <strong>Must</strong> constitute the release gate for V1.</p>
+  </section>
+
+  <footer>
+    HelperHive &middot; Functional Requirements Specification v1.0 &middot; 2026-08-28 &middot;
+    questions to <a href="mailto:helperhivesupport@gmail.com">helperhivesupport@gmail.com</a>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var reqs = Array.prototype.slice.call(document.querySelectorAll('.req'));
+    var sections = Array.prototype.slice.call(document.querySelectorAll('section[data-reqs]'));
+    var ctxSections = Array.prototype.slice.call(document.querySelectorAll('section[data-ctx]'));
+    var q = document.getElementById('q');
+    var shown = document.getElementById('shown');
+    var empty = document.getElementById('empty');
+    var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+    var priority = 'all';
+
+    function apply() {
+      var term = q.value.trim().toLowerCase();
+      var count = 0;
+
+      reqs.forEach(function (req) {
+        var okPri = priority === 'all' || req.getAttribute('data-pri') === priority;
+        var okText = !term || req.textContent.toLowerCase().indexOf(term) !== -1;
+        var visible = okPri && okText;
+        req.hidden = !visible;
+        if (visible) { count++; }
+      });
+
+      sections.forEach(function (sec) {
+        var any = sec.querySelector('.req:not([hidden])');
+        sec.hidden = !any;
+      });
+
+      // Context sections only make sense in the unfiltered view.
+      var filtering = !!term || priority !== 'all';
+      ctxSections.forEach(function (sec) { sec.hidden = filtering; });
+
+      shown.textContent = count + (count === 1 ? ' shown' : ' shown');
+      empty.setAttribute('data-on', count === 0 ? 'true' : 'false');
+    }
+
+    q.addEventListener('input', apply);
+
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        priority = chip.getAttribute('data-pri');
+        chips.forEach(function (c) {
+          c.setAttribute('aria-pressed', c === chip ? 'true' : 'false');
+        });
+        apply();
+      });
+    });
+
+    apply();
+  })();
+</script>
+</body>
+</html>
