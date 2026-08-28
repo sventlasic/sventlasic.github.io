@@ -277,7 +277,7 @@
     color: var(--ink-soft);
   }
   .note p { margin: 0; font-size: inherit; }
-  .note .note-title {
+  .note-title {
     display: block;
     font-family: var(--font-mono);
     font-size: .6875rem;
@@ -301,10 +301,21 @@
   }
   .linkslot .note-title { color: var(--teal-deep); }
   .linkslot .slot-value {
+    display: block;
     font-family: var(--font-mono);
     font-size: var(--step--1);
-    color: var(--muted);
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--teal-deep);
     word-break: break-all;
+    padding: .15rem 0;
+  }
+  .linkslot .slot-note {
+    display: block;
+    margin-top: .45rem;
+    font-size: var(--step--1);
+    line-height: 1.5;
+    color: var(--ink-soft);
   }
 
   /* Checklist */
@@ -470,7 +481,8 @@
 
     <div class="linkslot">
       <span class="note-title">Your opt-in link</span>
-      <span class="slot-value">— to be pasted here before this guide goes out —</span>
+      <a class="slot-value" href="https://play.google.com/apps/testing/com.helperhive.app">https://play.google.com/apps/testing/com.helperhive.app</a>
+      <span class="slot-note">Only works if we've already added your email to the tester list — so send us that address first.</span>
     </div>
 
     <div class="note alert">
