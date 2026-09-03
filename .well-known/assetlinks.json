@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.helperhive.app",
+      "sha256_cert_fingerprints": [
+        "F6:4C:5C:92:27:DE:F4:BD:C7:BF:3F:5F:A0:74:1D:79:C0:53:27:24:3B:06:00:3E:08:82:9D:DC:9A:D9:F4:BB",
+        "E4:6B:D9:9F:78:BC:71:5C:70:72:51:67:27:31:16:6F:A3:6C:49:63:70:E4:30:9F:5C:55:20:78:87:D9:58:E7"
+      ]
+    }
+  }
+]
