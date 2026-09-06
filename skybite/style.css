@@ -1,0 +1,96 @@
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --fg: #1b1c20;
+  --muted: #5f6270;
+  --rule: #e4e6ec;
+  --accent: #1f6f60;
+  --chip: #f3f4f8;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #15161a;
+    --fg: #e7e8ec;
+    --muted: #a0a4b0;
+    --rule: #2b2d35;
+    --accent: #6fd0bb;
+    --chip: #202229;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+.wrap { max-width: 44rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+
+h1 { font-size: 1.75rem; line-height: 1.25; margin: 0 0 .5rem; letter-spacing: -.01em; }
+
+h2 {
+  font-size: 1.125rem;
+  margin: 2.5rem 0 .75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  letter-spacing: -.005em;
+}
+h2:first-of-type { border-top: 0; padding-top: 0; margin-top: 2rem; }
+
+p, li { margin: 0 0 1rem; }
+ul { padding-left: 1.25rem; }
+li { margin-bottom: .5rem; }
+
+a { color: var(--accent); }
+a:hover { text-decoration: none; }
+
+strong { font-weight: 600; }
+
+code {
+  background: var(--chip);
+  border-radius: 4px;
+  padding: .1em .35em;
+  font: .875em/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  word-break: break-word;
+}
+
+/* Effective / last-updated block under the title. */
+.dates { color: var(--muted); font-size: .875rem; margin: 0 0 2rem; }
+.dates span { display: block; }
+
+.lede { font-size: 1.0625rem; }
+
+/* Wide tables scroll inside themselves rather than the page. */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1.5rem;
+  font-size: .9375rem;
+  display: block;
+  overflow-x: auto;
+}
+th, td {
+  text-align: left;
+  padding: .6rem .75rem;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+th { font-weight: 600; white-space: nowrap; }
+
+.foot {
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: .875rem;
+}
+.foot a { margin-right: 1rem; }
+
+/* Index page only. */
+.game { margin: 0 0 2rem; }
+.game h2 { border-top: 1px solid var(--rule); }
