@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "note": "Shared by all of our apps: our own apps, shown in an app's ad slot when no real ad is available. Each app leaves itself out. Only list our own products. To change: edit this file, raise version by 1, put any new icon (96 x 96 PNG) in icons/, then commit and push. Apps pick up the change from their next launch.",
+  "promos": [
+    {
+      "id": "helperhive",
+      "name": "HelperHive",
+      "tagline": "Find household helpers near you",
+      "url": "https://play.google.com/store/apps/details?id=com.helperhive.app",
+      "icon": "helperhive.png",
+      "background": "#0F2D3D",
+      "accent": "#1A9E8F",
+      "weight": 1
+    }
+  ]
+}
