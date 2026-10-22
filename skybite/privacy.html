@@ -12,7 +12,7 @@
 <h1>Privacy Policy — Skybite</h1>
 <p class="dates">
   <span><strong>Effective date:</strong> 24 August 2026</span>
-  <span><strong>Last updated:</strong> 4 September 2026</span>
+  <span><strong>Last updated:</strong> 22 October 2026</span>
 </p>
 
 <p class="lede">This policy explains what happens to information when you play
@@ -26,13 +26,17 @@ Google Play under the package name <code>com.sventlasic.skybite</code>.</p>
 <h2>The short version</h2>
 
 <p>We do not have a server, an account system or a database. We never receive
-your personal data, because there is nowhere for it to go. Your high score and
-your settings are saved on your own phone and are deleted when you uninstall
-the Game.</p>
+your personal data, because there is nowhere for it to go. Your scores, your
+settings and the scenes you have unlocked are saved on your own phone and are
+deleted when you uninstall the Game.</p>
 
 <p>The one exception is advertising. The Game shows a banner ad supplied by
-Google AdMob, and Google&rsquo;s advertising SDK &mdash; not us &mdash; collects
-data from your device in order to serve and measure those ads.</p>
+Google AdMob, and, only when you choose to watch one to unlock a scene, a video
+ad from the same source; Google&rsquo;s advertising SDK &mdash; not us &mdash; collects
+data from your device in order to serve and measure those ads. When no ad is
+available, the Game may show a banner for one of our other apps instead; the
+list of those banners is downloaded from our website, which reveals your IP
+address to our website&rsquo;s host (section 3).</p>
 
 <h2>1. What we collect ourselves</h2>
 
@@ -42,7 +46,7 @@ us first.</p>
 
 <h2>2. What is stored on your device</h2>
 
-<p>The Game saves two small files in its own private storage area:</p>
+<p>The Game saves a few small files in its own private storage area:</p>
 
 <table>
   <thead>
@@ -51,13 +55,23 @@ us first.</p>
   <tbody>
     <tr>
       <td>High scores</td>
-      <td>Best score, kills, balloons popped, time survived, runs played, wins</td>
-      <td><code>highscores.cfg</code> in app-private storage</td>
+      <td>For each scene: best score, kills, balloons popped, time survived or distance climbed, runs played, wins</td>
+      <td><code>highscores.cfg</code> (and one file per multiplayer mode), plus <code>arena_scores.cfg</code>, <code>bridge_scores.cfg</code>, <code>memory_scores.cfg</code>, <code>whack_scores.cfg</code> and <code>climb_scores.cfg</code>, in app-private storage</td>
     </tr>
     <tr>
       <td>Settings</td>
-      <td>Music on/off, sound effects on/off, chosen theme</td>
+      <td>Music on/off, sound effects on/off, chosen theme, which tutorials you have seen, and whether you have opened the store page from &ldquo;Rate Skybite&rdquo;</td>
       <td><code>settings.cfg</code> in app-private storage</td>
+    </tr>
+    <tr>
+      <td>Our own banners</td>
+      <td>The list of our other apps and their icons, downloaded from our website (section 3)</td>
+      <td><code>promos.json</code> and <code>promo-icons/</code> in app-private storage</td>
+    </tr>
+    <tr>
+      <td>Unlocked scenes</td>
+      <td>Which scenes you have unlocked, and how many times an ad failed to load for one</td>
+      <td><code>unlocks.cfg</code> in app-private storage</td>
     </tr>
   </tbody>
 </table>
@@ -69,7 +83,8 @@ read.</p>
 
 <h2>3. Advertising (Google AdMob)</h2>
 
-<p>The Game is free and supported by a single banner advertisement served by
+<p>The Game is free and supported by a banner advertisement, and by optional
+video ads you may choose to watch to unlock a scene, all served by
 <strong>Google AdMob</strong>. To select and measure ads, Google&rsquo;s SDK may
 collect and process:</p>
 
@@ -107,6 +122,16 @@ before personalised ads are served, and you can change that choice at any time
 from the Game&rsquo;s settings. Where consent is refused or withdrawn, ads are
 served on a non-personalised basis.</p>
 
+<p><strong>Our own banners.</strong> When no advertisement is available, the Game
+may show a banner for one of our other apps, marked &ldquo;Our app&rdquo;. The
+list of these banners and their icons is downloaded from our website
+(<code>sventlasic.github.io</code>, hosted by GitHub Pages) from time to time.
+Like any website request, this download reveals your IP address to the
+website&rsquo;s host, which may keep standard server logs. It includes no
+information about you or how you play. The banners themselves collect nothing;
+tapping one opens the Google Play Store, which is governed by Google&rsquo;s own
+policies.</p>
+
 <h2>4. Local network multiplayer</h2>
 
 <p>The Game&rsquo;s multiplayer modes work over your <strong>local Wi-Fi
@@ -124,18 +149,36 @@ third party, and it is not recorded. Note that your device model name is visible
 to anyone else running the Game on the same Wi-Fi network, so avoid multiplayer
 on networks you do not trust.</p>
 
-<h2>5. What the Game does <em>not</em> do</h2>
+<h2>5. Sharing a score and rating the Game</h2>
+
+<p><strong>Share.</strong> After a run you can tap <strong>Share</strong> to send
+a short message &mdash; the scene&rsquo;s name, your result, your best and a link
+to the Game&rsquo;s store page &mdash; to an app of your choice, through
+Android&rsquo;s standard share screen. The Game only hands the message to
+Android; it does not send it anywhere itself, and it does not know whether,
+where or to whom it was sent. What happens next is governed by the app you
+chose.</p>
+
+<p><strong>Rate Skybite.</strong> The settings screen has a button that opens the
+Game&rsquo;s page on Google Play, where you can leave a rating and a review.
+Reviews are written and published through Google Play, under Google&rsquo;s
+policies, and are public; we can read and reply to them in Google Play&rsquo;s
+developer tools, as any developer can. The Game itself only remembers, on your
+device, that you opened that page.</p>
+
+<h2>6. What the Game does <em>not</em> do</h2>
 
 <ul>
   <li>No user accounts, sign-in, or profiles.</li>
   <li>No in-app purchases or payment processing.</li>
   <li>No online leaderboards or cloud saves.</li>
-  <li>No chat, messaging, or user-generated content.</li>
+  <li>No chat, messaging, or user-generated content. (Sharing a score hands a
+  message to an app you choose; see section 5.)</li>
   <li>No analytics, attribution, or crash-reporting SDKs.</li>
   <li>No selling or sharing of personal information for money.</li>
 </ul>
 
-<h2>6. Children</h2>
+<h2>7. Children</h2>
 
 <p>The Game is <strong>not directed to children under 13</strong> (or under the
 equivalent minimum age in your country), and we do not knowingly collect personal
@@ -146,7 +189,7 @@ us at
 <strong><a href="mailto:nevssupplies+skybite@gmail.com">nevssupplies+skybite@gmail.com</a></strong>
 if we can help.</p>
 
-<h2>7. Your choices and rights</h2>
+<h2>8. Your choices and rights</h2>
 
 <p><strong>On your device, at any time:</strong></p>
 
@@ -175,20 +218,22 @@ information listed in that law.</p>
 <p>You also have the right to lodge a complaint with your local data protection
 authority.</p>
 
-<h2>8. Retention, security and international transfers</h2>
+<h2>9. Retention, security and international transfers</h2>
 
 <p>Data stored by the Game lives only on your device, for as long as the Game is
 installed. Advertising data is retained by Google according to its own policies,
 and may be processed on servers outside your country under the safeguards
-described in Google&rsquo;s privacy policy.</p>
+described in Google&rsquo;s privacy policy. Requests to our website for the list
+of our own banners are logged, if at all, by its host (GitHub) under its own
+policies.</p>
 
-<h2>9. Changes to this policy</h2>
+<h2>10. Changes to this policy</h2>
 
 <p>If this policy changes, the new version will be published at this address and
 the &ldquo;Last updated&rdquo; date above will change. Material changes will also
 be noted in the Game&rsquo;s store listing.</p>
 
-<h2>10. Contact</h2>
+<h2>11. Contact</h2>
 
 <p><strong>Laurel Lasic</strong><br>
 <strong><a href="mailto:nevssupplies+skybite@gmail.com">nevssupplies+skybite@gmail.com</a></strong></p>
