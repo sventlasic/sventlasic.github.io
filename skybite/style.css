@@ -91,6 +91,24 @@ th { font-weight: 600; white-space: nowrap; }
 }
 .foot a { margin-right: 1rem; }
 
+/* The tester guide and the FRS (built by tools/build_docs.js). */
+h3 { font-size: 1rem; margin: 1.75rem 0 .5rem; }
+ol { padding-left: 1.5rem; }
+blockquote {
+  margin: 0 0 1.25rem;
+  padding: .75rem 1rem;
+  background: var(--chip);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+}
+blockquote p { margin: 0; }
+ul.checks { list-style: none; padding-left: 0; }
+ul.checks label { display: flex; gap: .5rem; align-items: baseline; }
+ul.checks input { accent-color: var(--accent); flex: none; }
+ul.checks label > span { flex: 1; }
+/* A long link must wrap, or it widens the whole page on a phone. */
+a { overflow-wrap: anywhere; }
+
 /* Index page only. */
 .game { margin: 0 0 2rem; }
 .game h2 { border-top: 1px solid var(--rule); }
