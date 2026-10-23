@@ -48,6 +48,24 @@ a:hover { text-decoration: none; }
 
 strong { font-weight: 600; }
 
+h3 { font-size: 1rem; margin: 1.75rem 0 .5rem; }
+ol { padding-left: 1.5rem; }
+ul.check { list-style: none; padding-left: 0; }
+ul.check li::before { content: "\2610"; margin-right: .5rem; color: var(--muted); }
+code { font: .875em ui-monospace, SFMono-Regular, Consolas, monospace; overflow-wrap: anywhere; }
+blockquote {
+  margin: 0 0 1rem;
+  padding: .75rem 1rem;
+  border-left: 3px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+blockquote p { margin: 0; }
+.table { overflow-x: auto; margin: 0 0 1.25rem; }
+table { border-collapse: collapse; width: 100%; font-size: .9375rem; }
+th, td { text-align: left; vertical-align: top; padding: .5rem .625rem; border-bottom: 1px solid var(--rule); }
+th { font-weight: 600; }
+td:first-child { white-space: nowrap; }
+
 .dates { color: var(--muted); font-size: .875rem; margin: 0 0 2rem; }
 
 .lede { font-size: 1.0625rem; }

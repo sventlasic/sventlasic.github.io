@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Civil Service Reviewer Today: Functional Requirements Specification</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+<h1>Civil Service Reviewer Today: Functional Requirements Specification</h1>
+
+<p><strong>Product:</strong> Civil Service Reviewer Today (Android)<br>
+<strong>Applies to:</strong> 1.0.0, version code 2 and later · package <code>com.civilservicereviewertoday.app</code><br>
+<strong>Document version:</strong> 1.0 · 2026-10-23<br>
+<strong>Status:</strong> Baseline for closed testing</p>
+
+<blockquote><p>Reading a saved or printed copy? Check the document version above against <a href="https://sventlasic.github.io/civil-service-reviewer-today/frs.html">https://sventlasic.github.io/civil-service-reviewer-today/frs.html</a> before reporting a finding.</p></blockquote>
+
+<h2>1. Introduction</h2>
+
+<h3>1.1 Purpose</h3>
+
+<p>This document lists what the app is required to do, so that testers can check its behaviour against a written baseline. Every requirement has a unique ID; quote it when reporting a finding (for example &quot;FR-MOCK-07 fails: the timer kept running after I left&quot;).</p>
+
+<h3>1.2 Scope</h3>
+
+<p>Civil Service Reviewer Today is a free Android study app for the Philippine Civil Service Examination, Professional and Sub-Professional levels. It offers practice questions with explanations, timed mock exams, short lessons (&quot;reviewers&quot;) and progress tracking. There is no account, no paid tier and no backend: study data stays on the device, and the app is funded by banner ads.</p>
+
+<h3>1.3 Intended audience</h3>
+
+<p>Testers, the developer, and anyone checking that the app is complete. Section 3 is the part to test; Sections 2 and 4 give the context needed to judge whether behaviour is correct.</p>
+
+<h3>1.4 Definitions</h3>
+
+<div class="table"><table>
+<thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+<tbody>
+  <tr><td><strong>Level</strong></td><td>The exam being prepared for: Professional or Sub-Professional</td></tr>
+  <tr><td><strong>Subject</strong></td><td>Verbal Ability, Numerical Ability, Analytical Ability (Professional), Clerical Ability (Sub-Professional), General Information</td></tr>
+  <tr><td><strong>Practice set</strong></td><td>A quiz of up to 20 questions, answered one at a time with immediate feedback</td></tr>
+  <tr><td><strong>Mock exam</strong></td><td>A timed exam with feedback only after submitting: Full or Quick</td></tr>
+  <tr><td><strong>Passage</strong></td><td>A reading text with several questions; its questions always appear together and in order</td></tr>
+  <tr><td><strong>Reviewer / lesson</strong></td><td>A short study note for one topic, with a &quot;Practice this topic&quot; button</td></tr>
+  <tr><td><strong>Bank</strong></td><td>All questions available to the app: those built into it plus those downloaded from the website</td></tr>
+  <tr><td><strong>House banner</strong></td><td>A banner for one of our own apps, shown in an ad slot when no ad is available</td></tr>
+</tbody></table></div>
+
+<h3>1.5 Requirement conventions</h3>
+
+<ul>
+  <li><strong>Shall</strong> marks a requirement. Each is written so that it can be passed or failed by observation.</li>
+  <li><strong>Priority:</strong> <strong>M</strong> must (blocks launch), <strong>S</strong> should, <strong>C</strong> could.</li>
+  <li>IDs are stable. A withdrawn requirement keeps its ID retired, so a gap in numbering is not a finding.</li>
+</ul>
+
+<h2>2. Overall description</h2>
+
+<h3>2.1 Operating environment</h3>
+
+<ul>
+  <li>Android 7.0 or newer, phones and tablets, portrait orientation.</li>
+  <li>Distributed through Google Play. Closed-testing builds show Google <strong>test</strong> ads only.</li>
+  <li>An internet connection is needed only for ads and for downloading new questions and lessons; everything else works offline.</li>
+</ul>
+
+<h3>2.2 Constraints</h3>
+
+<div class="table"><table>
+<thead><tr><th>#</th><th>Constraint</th></tr></thead>
+<tbody>
+  <tr><td>C-1</td><td>No account or sign-in of any kind.</td></tr>
+  <tr><td>C-2</td><td>Answers, scores, bookmarks and settings are stored only on the device and never sent anywhere.</td></tr>
+  <tr><td>C-3</td><td>No iOS version.</td></tr>
+  <tr><td>C-4</td><td>The app is an independent study aid, not affiliated with the Civil Service Commission, and says so.</td></tr>
+  <tr><td>C-5</td><td>A question's ID never changes and is never reused, because progress is stored against it.</td></tr>
+</tbody></table></div>
+
+<h3>2.3 Exam formats</h3>
+
+<div class="table"><table>
+<thead><tr><th>Level</th><th>Full mock exam</th><th>Quick mock exam</th><th>Passing mark</th></tr></thead>
+<tbody>
+  <tr><td>Professional</td><td>150 questions, 3 hours 10 minutes</td><td>50 questions, 55 minutes</td><td>80%</td></tr>
+  <tr><td>Sub-Professional</td><td>145 questions, 2 hours 40 minutes</td><td>50 questions, 55 minutes</td><td>80%</td></tr>
+</tbody></table></div>
+
+<h2>3. Functional requirements</h2>
+
+<h3>3.1 First run and navigation: FR-NAV</h3>
+
+<div class="table"><table>
+<thead><tr><th>ID</th><th>Requirement</th><th>Priority</th></tr></thead>
+<tbody>
+  <tr><td>FR-NAV-01</td><td>On first launch the app shall show a welcome screen describing the app and asking which exam the user is taking (Professional selected by default).</td><td>M</td></tr>
+  <tr><td>FR-NAV-02</td><td>The welcome screen shall link to the Terms of Service and Privacy Policy and state that the app is not affiliated with the Civil Service Commission.</td><td>M</td></tr>
+  <tr><td>FR-NAV-03</td><td>Tapping <strong>Start reviewing</strong> shall save the chosen level and open Home; the welcome screen shall not appear again on later launches.</td><td>M</td></tr>
+  <tr><td>FR-NAV-04</td><td>The app shall have four tabs: Home, Reviewers, Practice, Progress.</td><td>M</td></tr>
+  <tr><td>FR-NAV-05</td><td>On Home (and on the welcome screen), pressing Back once shall show &quot;Press back again to exit&quot;; a second press within 2 seconds shall close the app.</td><td>S</td></tr>
+</tbody></table></div>
+
+<h3>3.2 Home: FR-HOME</h3>
+
+<div class="table"><table>
+<thead><tr><th>ID</th><th>Requirement</th><th>Priority</th></tr></thead>
+<tbody>
+  <tr><td>FR-HOME-01</td><td>Home shall show the current level, which can be changed from the level button; changing level shall keep all progress.</td><td>M</td></tr>
+  <tr><td>FR-HOME-02</td><td>Home shall show today's goal as &quot;X of Y questions&quot; with a progress bar, and the current day streak (or &quot;No streak yet&quot;).</td><td>M</td></tr>
+  <tr><td>FR-HOME-03</td><td>The goal card button shall read <strong>Start practice</strong> before any answer today and <strong>Continue practice</strong> afterwards, and start a mixed practice set.</td><td>M</td></tr>
+  <tr><td>FR-HOME-04</td><td>Home shall show a <strong>Start mock exam</strong> button and one card per subject of the current level with its &quot;% done&quot;.</td><td>M</td></tr>
+  <tr><td>FR-HOME-05</td><td>&quot;% done&quot; shall be the share of that subject's questions answered at least once at the current level.</td><td>S</td></tr>
+</tbody></table></div>
+
+<h3>3.3 Practice: FR-PRAC</h3>
+
+<div class="table"><table>
+<thead><tr><th>ID</th><th>Requirement</th><th>Priority</th></tr></thead>
+<tbody>
+  <tr><td>FR-PRAC-01</td><td>A practice set shall contain up to 20 questions of the current level, mixed or from one chosen subject or lesson topic.</td><td>M</td></tr>
+  <tr><td>FR-PRAC-02</td><td>Questions shall be chosen in this priority: never answered, then answered wrong last time, then answered longest ago. The chosen questions are shuffled.</td><td>M</td></tr>
+  <tr><td>FR-PRAC-03</td><td>The four choices shall be shown in a new random order each time a question appears.</td><td>M</td></tr>
+  <tr><td>FR-PRAC-04</td><td>After the user taps a choice, the app shall mark the user's choice and the correct answer, show &quot;Correct&quot; or &quot;Not quite&quot; with the explanation, and not allow changing the answer.</td><td>M</td></tr>
+  <tr><td>FR-PRAC-05</td><td>Under every explanation there shall be <strong>Report a problem with this question</strong>, which opens an email to the support address with the question ID filled in.</td><td>M</td></tr>
+  <tr><td>FR-PRAC-06</td><td>Passage questions shall show the passage text and appear together, in order.</td><td>M</td></tr>
+  <tr><td>FR-PRAC-07</td><td>The user shall be able to bookmark and un-bookmark the current question.</td><td>S</td></tr>
+  <tr><td>FR-PRAC-08</td><td>Closing a set early shall ask for confirmation; answers given so far shall be kept.</td><td>M</td></tr>
+  <tr><td>FR-PRAC-09</td><td>After the last question the app shall show the score (&quot;X of 20&quot;).</td><td>M</td></tr>
+  <tr><td>FR-PRAC-10</td><td>Every answer shall count toward today's goal, the streak and the statistics.</td><td>M</td></tr>
+</tbody></table></div>
+
+<h3>3.4 Mock exam: FR-MOCK</h3>
+
+<div class="table"><table>
+<thead><tr><th>ID</th><th>Requirement</th><th>Priority</th></tr></thead>
+<tbody>
+  <tr><td>FR-MOCK-01</td><td>The mock exam intro shall offer a Full and a Quick exam with the question count and time limit of the current level (see 2.3), and explain the rules.</td><td>M</td></tr>
+  <tr><td>FR-MOCK-02</td><td>The exam shall cover all subjects of the level in roughly equal shares, grouped by subject, with passages kept together.</td><td>M</td></tr>
+  <tr><td>FR-MOCK-03</td><td>The exam shall show a countdown timer that changes appearance when little time is left.</td><td>M</td></tr>
+  <tr><td>FR-MOCK-04</td><td>The user shall be able to move with Previous and Next, flag questions, and jump to any question from <strong>All questions</strong>.</td><td>M</td></tr>
+  <tr><td>FR-MOCK-05</td><td>No answer or explanation shall be shown before the exam is submitted.</td><td>M</td></tr>
+  <tr><td>FR-MOCK-06</td><td>Submitting shall ask for confirmation and say how many questions are unanswered; unanswered questions count as wrong.</td><td>M</td></tr>
+  <tr><td>FR-MOCK-07</td><td>When the user leaves the exam or the app goes to the background, the timer shall pause and the exam shall be saved.</td><td>M</td></tr>
+  <tr><td>FR-MOCK-08</td><td>A saved exam shall be offered on the intro screen as &quot;Resume exam&quot;, naming the level, the question reached and the time left.</td><td>M</td></tr>
+  <tr><td>FR-MOCK-09</td><td>When the timer reaches zero the exam shall be submitted automatically.</td><td>M</td></tr>
+  <tr><td>FR-MOCK-10</td><td>If the bank has fewer questions than the full format, the exam shall be shortened and the time scaled to match, and the intro shall say so.</td><td>S</td></tr>
+</tbody></table></div>
+
+<h3>3.5 Results and review: FR-RES</h3>
+
+<div class="table"><table>
+<thead><tr><th>ID</th><th>Requirement</th><th>Priority</th></tr></thead>
+<tbody>
+  <tr><td>FR-RES-01</td><td>After a mock exam the app shall show the total score, the percentage, whether it reaches the 80% passing mark, and the score per subject.</td><td>M</td></tr>
+  <tr><td>FR-RES-02</td><td><strong>Review my mistakes</strong> shall list each wrong or unanswered question with the user's answer, the correct answer and the explanation.</td><td>M</td></tr>
+  <tr><td>FR-RES-03</td><td>The results screen shall offer to take a new mock exam, to practise the missed questions, and to go back home.</td><td>S</td></tr>
+  <tr><td>FR-RES-04</td><td>Every submitted exam shall appear in <strong>Progress → Mock exam history</strong> with its date and score, and can be reopened.</td><td>M</td></tr>
+  <tr><td>FR-RES-05</td><td>The user shall be able to share a score through the phone's share menu; nothing is sent by the app itself.</td><td>C</td></tr>
+</tbody></table></div>
+
+<h3>3.6 Reviewers (lessons): FR-LES</h3>
+
+<div class="table"><table>
+<thead><tr><th>ID</th><th>Requirement</th><th>Priority</th></tr></thead>
+<tbody>
+  <tr><td>FR-LES-01</td><td>The Reviewers tab shall list the lessons of the current level, filterable by subject.</td><td>M</td></tr>
+  <tr><td>FR-LES-02</td><td>A lesson shall show its subject, its position (&quot;Lesson 1 of 8&quot;), and sections such as Key idea, Worked example, Remember and Common mistake.</td><td>M</td></tr>
+  <tr><td>FR-LES-03</td><td><strong>Practice this topic</strong> shall start a practice set from that lesson's topic.</td><td>M</td></tr>
+</tbody></table></div>
+
+<h3>3.7 Progress: FR-PROG</h3>
+
+<div class="table"><table>
+<thead><tr><th>ID</th><th>Requirement</th><th>Priority</th></tr></thead>
+<tbody>
+  <tr><td>FR-PROG-01</td><td>Progress shall show the day streak, the overall accuracy and &quot;X of Y answered&quot; for the current level.</td><td>M</td></tr>
+  <tr><td>FR-PROG-02</td><td>Progress shall show accuracy per subject (&quot;Not started&quot; when none answered).</td><td>M</td></tr>
+  <tr><td>FR-PROG-03</td><td>Progress shall suggest a <strong>Focus next</strong> topic: the weakest topic with enough answers, never a topic answered perfectly.</td><td>S</td></tr>
+  <tr><td>FR-PROG-04</td><td>Progress shall open Mock exam history, Bookmarked questions and Questions I got wrong, each with a count.</td><td>M</td></tr>
+  <tr><td>FR-PROG-05</td><td>A day counts toward the streak if at least one question was answered that day; the streak does not break until a whole day passes without answers.</td><td>M</td></tr>
+</tbody></table></div>
+
+<h3>3.8 Settings and reminders: FR-SET</h3>
+
+<div class="table"><table>
+<thead><tr><th>ID</th><th>Requirement</th><th>Priority</th></tr></thead>
+<tbody>
+  <tr><td>FR-SET-01</td><td>Settings shall allow changing the exam level and the daily goal (10, 20, 30 or 50 questions; 20 by default).</td><td>M</td></tr>
+  <tr><td>FR-SET-02</td><td>The user shall be able to turn on one daily study reminder and choose its time.</td><td>M</td></tr>
+  <tr><td>FR-SET-03</td><td>When on, a notification shall appear at the chosen time each day; tapping it opens the app.</td><td>M</td></tr>
+  <tr><td>FR-SET-04</td><td>On phones whose maker restricts background work (for example Xiaomi, Redmi, POCO), Settings shall explain how to let reminders through and offer <strong>Open App settings</strong>.</td><td>S</td></tr>
+  <tr><td>FR-SET-05</td><td>Settings shall offer Rate this app, Share with a friend, Privacy Policy and Terms of Service.</td><td>S</td></tr>
+  <tr><td>FR-SET-06</td><td><strong>Reset my progress</strong> shall ask for confirmation and then erase answers, bookmarks, the streak and the exam history, keeping settings such as the level.</td><td>M</td></tr>
+  <tr><td>FR-SET-07</td><td>Settings shall show the app version and state that progress is stored only on this phone.</td><td>C</td></tr>
+</tbody></table></div>
+
+<h3>3.9 Questions and lessons from the website: FR-CONT</h3>
+
+<div class="table"><table>
+<thead><tr><th>ID</th><th>Requirement</th><th>Priority</th></tr></thead>
+<tbody>
+  <tr><td>FR-CONT-01</td><td>The app shall work fully offline with its built-in questions and lessons.</td><td>M</td></tr>
+  <tr><td>FR-CONT-02</td><td>When online, the app shall check the website for a newer question file and lesson file, download them in the background, and use them from the next launch.</td><td>M</td></tr>
+  <tr><td>FR-CONT-03</td><td>A failed or interrupted download shall leave the current questions in use, with no error shown to the user.</td><td>M</td></tr>
+  <tr><td>FR-CONT-04</td><td>Progress on existing questions shall be kept after an update.</td><td>M</td></tr>
+</tbody></table></div>
+
+<h3>3.10 Ads, consent and promotions: FR-ADS</h3>
+
+<div class="table"><table>
+<thead><tr><th>ID</th><th>Requirement</th><th>Priority</th></tr></thead>
+<tbody>
+  <tr><td>FR-ADS-01</td><td>Tab screens shall show a banner at the bottom, above the tab bar; other screens at the top, with the space reserved so the screen does not jump when the ad loads.</td><td>M</td></tr>
+  <tr><td>FR-ADS-02</td><td>Closed-testing builds shall show only Google test ads, labelled &quot;Test Ad&quot;.</td><td>M</td></tr>
+  <tr><td>FR-ADS-03</td><td>Before any ad is requested, the app shall run Google's consent check; users in the EEA, UK and Switzerland see a consent form on first launch, with Consent, Do not consent and Manage options.</td><td>M</td></tr>
+  <tr><td>FR-ADS-04</td><td>Refusing consent shall not block any feature.</td><td>M</td></tr>
+  <tr><td>FR-ADS-05</td><td>Users who saw a consent form (EEA, UK, Switzerland, regulated US states) shall have an <strong>Ad privacy choices</strong> row in Settings that reopens it.</td><td>M</td></tr>
+  <tr><td>FR-ADS-06</td><td>When no ad can be shown, the slot shall show a banner for one of our other apps, marked &quot;OUR APP&quot;, and never for this app itself.</td><td>S</td></tr>
+</tbody></table></div>
+
+<h3>3.11 Rating: FR-RATE</h3>
+
+<div class="table"><table>
+<thead><tr><th>ID</th><th>Requirement</th><th>Priority</th></tr></thead>
+<tbody>
+  <tr><td>FR-RATE-01</td><td>The app shall ask for a Play Store rating, using Google's own rating window, after the 3rd finished practice set or straight after passing a mock exam.</td><td>S</td></tr>
+  <tr><td>FR-RATE-02</td><td>The app shall not ask again within 60 days, shall offer no reward for rating, and shall not ask &quot;Do you like the app?&quot; first.</td><td>M</td></tr>
+</tbody></table></div>
+
+<h2>4. Non-functional requirements</h2>
+
+<div class="table"><table>
+<thead><tr><th>ID</th><th>Requirement</th><th>Priority</th></tr></thead>
+<tbody>
+  <tr><td>NFR-01</td><td>No crash or freeze during normal use on Android 7.0 or newer.</td><td>M</td></tr>
+  <tr><td>NFR-02</td><td>All text readable and nothing cut off on small phones and on tablets.</td><td>M</td></tr>
+  <tr><td>NFR-03</td><td>Opening the app, a practice set or a lesson shall feel immediate; no screen waits on the network.</td><td>S</td></tr>
+  <tr><td>NFR-04</td><td>Nothing about the user leaves the device apart from what the ads SDK sends (see the Privacy Policy).</td><td>M</td></tr>
+  <tr><td>NFR-05</td><td>Every question has exactly one correct answer, and its explanation agrees with it.</td><td>M</td></tr>
+</tbody></table></div>
+
+<h2>5. Out of scope for version 1</h2>
+
+<ul>
+  <li>Accounts, sync between devices, and leaderboards.</li>
+  <li>An iPhone version.</li>
+  <li>A landscape layout (Android 16 and newer tablets may still rotate the app).</li>
+  <li>Paid features or ad removal.</li>
+</ul>
+
+<h2>6. Revision history</h2>
+
+<div class="table"><table>
+<thead><tr><th>Version</th><th>Date</th><th>Change</th></tr></thead>
+<tbody>
+  <tr><td>1.0</td><td>2026-10-23</td><td>First version, for closed testing of version code 2.</td></tr>
+</tbody></table></div>
+
+<div class="foot">
+  <a href="tester-guide.html">Tester guide</a>
+  <a href="privacy.html">Privacy Policy</a>
+</div>
+
+</div>
+</body>
+</html>
