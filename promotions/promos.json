@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "note": "Shared by all of our apps: our own apps, shown in an app's ad slot when no real ad is available. Each app leaves itself out. Only list our own products. To change: edit this file, raise version by 1, put any new icon (96 x 96 PNG) in icons/, then commit and push. Apps pick up the change from their next launch. Use plain Play Store links: each app adds its own tracking tag when the banner is tapped.",
   "promos": [
     {
@@ -20,6 +20,16 @@
       "icon": "civilservicereviewertoday.png",
       "background": "#0F2742",
       "accent": "#0F2742",
+      "weight": 1
+    },
+    {
+      "id": "skybite",
+      "name": "Skybite",
+      "tagline": "Six fast arcade scenes. Survive as long as you can",
+      "url": "https://play.google.com/store/apps/details?id=com.sventlasic.skybite",
+      "icon": "skybite.png",
+      "background": "#0F3D2E",
+      "accent": "#0F3D2E",
       "weight": 1
     }
   ]
