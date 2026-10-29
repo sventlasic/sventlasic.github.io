@@ -12,8 +12,8 @@
 <h1>Civil Service Reviewer Today: Functional Requirements Specification</h1>
 
 <p><strong>Product:</strong> Civil Service Reviewer Today (Android)<br>
-<strong>Applies to:</strong> 1.0.0, version code 2 and later (FR-SET-08: version code 3 and later) · package <code>com.civilservicereviewertoday.app</code><br>
-<strong>Document version:</strong> 1.2 · 2026-10-27<br>
+<strong>Applies to:</strong> 1.0.0, version code 2 and later (FR-SET-08: version code 3 and later; custom daily goal in FR-SET-01: version code 5 and later) · package <code>com.civilservicereviewertoday.app</code><br>
+<strong>Document version:</strong> 1.3 · 2026-10-29<br>
 <strong>Status:</strong> Baseline for closed testing</p>
 
 <blockquote><p>Reading a saved or printed copy? Check the document version above against <a href="https://sventlasic.github.io/civil-service-reviewer-today/frs.html">https://sventlasic.github.io/civil-service-reviewer-today/frs.html</a> before reporting a finding.</p></blockquote>
@@ -186,7 +186,7 @@
 <div class="table"><table>
 <thead><tr><th>ID</th><th>Requirement</th><th>Priority</th></tr></thead>
 <tbody>
-  <tr><td>FR-SET-01</td><td>Settings shall allow changing the exam level and the daily goal (10, 20, 30 or 50 questions; 20 by default).</td><td>M</td></tr>
+  <tr><td>FR-SET-01</td><td>Settings shall allow changing the exam level and the daily goal (10, 20, 30 or 50 questions, or a custom number from 5 to 200; 20 by default). An out-of-range custom number shall be refused with a message.</td><td>M</td></tr>
   <tr><td>FR-SET-02</td><td>The user shall be able to turn on one daily study reminder and choose its time.</td><td>M</td></tr>
   <tr><td>FR-SET-03</td><td>When on, a notification shall appear at the chosen time each day; tapping it opens the app.</td><td>M</td></tr>
   <tr><td>FR-SET-04</td><td>On phones whose maker restricts background work (for example Xiaomi, Redmi, POCO), Settings shall explain how to let reminders through and offer <strong>Open App settings</strong>.</td><td>S</td></tr>
@@ -258,6 +258,7 @@
   <tr><td>1.0</td><td>2026-10-23</td><td>First version, for closed testing of version code 2.</td></tr>
   <tr><td>1.1</td><td>2026-10-24</td><td>Added FR-SET-08 Send feedback (from version code 3); FR-SET-05 lists it.</td></tr>
   <tr><td>1.2</td><td>2026-10-27</td><td>Added FR-HOME-06, the question count on Home (from the next version code).</td></tr>
+  <tr><td>1.3</td><td>2026-10-29</td><td>FR-SET-01: custom daily goal from 5 to 200 (from version code 5).</td></tr>
 </tbody></table></div>
 
 <div class="foot">
