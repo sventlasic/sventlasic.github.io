@@ -13,7 +13,7 @@
 
 <p><strong>Product:</strong> Civil Service Reviewer Today (Android)<br>
 <strong>Applies to:</strong> 1.0.0, version code 2 and later (FR-SET-08: version code 3 and later; custom daily goal in FR-SET-01, FR-PRAC-11, FR-RES-03 and the Rate link in FR-SET-05: version code 5 and later) · package <code>com.civilservicereviewertoday.app</code><br>
-<strong>Document version:</strong> 1.4 · 2026-11-03<br>
+<strong>Document version:</strong> 1.5 · 2026-11-03<br>
 <strong>Status:</strong> Baseline for closed testing</p>
 
 <blockquote><p>Reading a saved or printed copy? Check the document version above against <a href="https://sventlasic.github.io/civil-service-reviewer-today/frs.html">https://sventlasic.github.io/civil-service-reviewer-today/frs.html</a> before reporting a finding.</p></blockquote>
@@ -218,7 +218,7 @@
   <tr><td>FR-ADS-03</td><td>Before any ad is requested, the app shall run Google's consent check; users in the EEA, UK and Switzerland see a consent form on first launch, with Consent, Do not consent and Manage options.</td><td>M</td></tr>
   <tr><td>FR-ADS-04</td><td>Refusing consent shall not block any feature.</td><td>M</td></tr>
   <tr><td>FR-ADS-05</td><td>Users who saw a consent form (EEA, UK, Switzerland, regulated US states) shall have an <strong>Ad privacy choices</strong> row in Settings that reopens it.</td><td>M</td></tr>
-  <tr><td>FR-ADS-06</td><td>When no ad can be shown, the slot shall show a banner for one of our other apps, marked &quot;OUR APP&quot;, and never for this app itself.</td><td>S</td></tr>
+  <tr><td>FR-ADS-06</td><td>When no ad can be shown, the slot shall show a banner for one of our other apps, marked &quot;OUR APP&quot;, and never for this app itself. The banner shall show the app's real icon also offline (icons of the apps listed at build time are built in; icons of apps added later are saved on the phone while online); only if no icon is available, the first letter of the name. Tapping it opens the app's Google Play page.</td><td>S</td></tr>
 </tbody></table></div>
 
 <h3>3.11 Rating: FR-RATE</h3>
@@ -261,6 +261,7 @@
   <tr><td>1.2</td><td>2026-10-27</td><td>Added FR-HOME-06, the question count on Home (from the next version code).</td></tr>
   <tr><td>1.3</td><td>2026-10-29</td><td>FR-SET-01: custom daily goal from 5 to 200 (from version code 5).</td></tr>
   <tr><td>1.4</td><td>2026-11-03</td><td>From QA report 2026-11-03: FR-PRAC-09 score counts answered questions only; new FR-PRAC-11 Skip; FR-RES-03 practise-missed built; FR-SET-05 Rate opens Google Play (all from version code 5).</td></tr>
+  <tr><td>1.5</td><td>2026-11-03</td><td>FR-ADS-06: house banner icon shown offline, opens Google Play (from version code 5).</td></tr>
 </tbody></table></div>
 
 <div class="foot">
