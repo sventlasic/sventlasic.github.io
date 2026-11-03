@@ -12,8 +12,8 @@
 <h1>Civil Service Reviewer Today: Functional Requirements Specification</h1>
 
 <p><strong>Product:</strong> Civil Service Reviewer Today (Android)<br>
-<strong>Applies to:</strong> 1.0.0, version code 2 and later (FR-SET-08: version code 3 and later; custom daily goal in FR-SET-01: version code 5 and later) · package <code>com.civilservicereviewertoday.app</code><br>
-<strong>Document version:</strong> 1.3 · 2026-10-29<br>
+<strong>Applies to:</strong> 1.0.0, version code 2 and later (FR-SET-08: version code 3 and later; custom daily goal in FR-SET-01, FR-PRAC-11, FR-RES-03 and the Rate link in FR-SET-05: version code 5 and later) · package <code>com.civilservicereviewertoday.app</code><br>
+<strong>Document version:</strong> 1.4 · 2026-11-03<br>
 <strong>Status:</strong> Baseline for closed testing</p>
 
 <blockquote><p>Reading a saved or printed copy? Check the document version above against <a href="https://sventlasic.github.io/civil-service-reviewer-today/frs.html">https://sventlasic.github.io/civil-service-reviewer-today/frs.html</a> before reporting a finding.</p></blockquote>
@@ -126,8 +126,9 @@
   <tr><td>FR-PRAC-06</td><td>Passage questions shall show the passage text and appear together, in order.</td><td>M</td></tr>
   <tr><td>FR-PRAC-07</td><td>The user shall be able to bookmark and un-bookmark the current question.</td><td>S</td></tr>
   <tr><td>FR-PRAC-08</td><td>Closing a set early shall ask for confirmation; answers given so far shall be kept.</td><td>M</td></tr>
-  <tr><td>FR-PRAC-09</td><td>After the last question the app shall show the score (&quot;X of 20&quot;).</td><td>M</td></tr>
+  <tr><td>FR-PRAC-09</td><td>After the last question the app shall show the score as right answers out of answered questions (&quot;3 of 8&quot;), with the number of skipped questions shown separately (&quot;12 skipped, not counted in your score&quot;), or &quot;All skipped&quot; if none was answered.</td><td>M</td></tr>
   <tr><td>FR-PRAC-10</td><td>Every answer shall count toward today's goal, the streak and the statistics.</td><td>M</td></tr>
+  <tr><td>FR-PRAC-11</td><td>Before answering, <strong>Skip</strong> shall move to the next question without recording an answer. A skipped question counts neither as right nor as wrong: not in the score, the goal, the streak, the statistics or &quot;Questions I got wrong&quot;. It stays unanswered, so later sets bring it again. The retry button on the score screen covers wrong and skipped questions (&quot;Retry the missed and skipped&quot;; &quot;Try the skipped ones&quot; if none was wrong). A set that was only skipped through does not count toward the rating prompt.</td><td>M</td></tr>
 </tbody></table></div>
 
 <h3>3.4 Mock exam: FR-MOCK</h3>
@@ -154,7 +155,7 @@
 <tbody>
   <tr><td>FR-RES-01</td><td>After a mock exam the app shall show the total score, the percentage, whether it reaches the 80% passing mark, and the score per subject.</td><td>M</td></tr>
   <tr><td>FR-RES-02</td><td><strong>Review my mistakes</strong> shall list each wrong or unanswered question with the user's answer, the correct answer and the explanation.</td><td>M</td></tr>
-  <tr><td>FR-RES-03</td><td>The results screen shall offer to take a new mock exam, to practise the missed questions, and to go back home.</td><td>S</td></tr>
+  <tr><td>FR-RES-03</td><td>The results screen shall offer to take a new mock exam, to practise the missed questions (a practice set of the questions answered wrong or left blank in that exam), and to go back home.</td><td>S</td></tr>
   <tr><td>FR-RES-04</td><td>Every submitted exam shall appear in <strong>Progress → Mock exam history</strong> with its date and score, and can be reopened.</td><td>M</td></tr>
   <tr><td>FR-RES-05</td><td>The user shall be able to share a score through the phone's share menu; nothing is sent by the app itself.</td><td>C</td></tr>
 </tbody></table></div>
@@ -190,7 +191,7 @@
   <tr><td>FR-SET-02</td><td>The user shall be able to turn on one daily study reminder and choose its time.</td><td>M</td></tr>
   <tr><td>FR-SET-03</td><td>When on, a notification shall appear at the chosen time each day; tapping it opens the app.</td><td>M</td></tr>
   <tr><td>FR-SET-04</td><td>On phones whose maker restricts background work (for example Xiaomi, Redmi, POCO), Settings shall explain how to let reminders through and offer <strong>Open App settings</strong>.</td><td>S</td></tr>
-  <tr><td>FR-SET-05</td><td>Settings shall offer Send feedback, Rate this app, Share with a friend, Privacy Policy and Terms of Service.</td><td>S</td></tr>
+  <tr><td>FR-SET-05</td><td>Settings shall offer Send feedback, Rate this app, Share with a friend, Privacy Policy and Terms of Service. Rate this app shall open the app's Google Play page, also on phones with their own app store (Honor, Huawei).</td><td>S</td></tr>
   <tr><td>FR-SET-06</td><td><strong>Reset my progress</strong> shall ask for confirmation and then erase answers, bookmarks, the streak and the exam history, keeping settings such as the level.</td><td>M</td></tr>
   <tr><td>FR-SET-07</td><td>Settings shall show the app version and state that progress is stored only on this phone.</td><td>C</td></tr>
   <tr><td>FR-SET-08</td><td><strong>Send feedback</strong> shall open the phone's email app with a draft to the support address, its subject filled in and the app version, Android version and phone model at the top, and the cursor where the message goes. Nothing is sent unless the user sends it; with no email app, the app shows the address instead.</td><td>M</td></tr>
@@ -259,6 +260,7 @@
   <tr><td>1.1</td><td>2026-10-24</td><td>Added FR-SET-08 Send feedback (from version code 3); FR-SET-05 lists it.</td></tr>
   <tr><td>1.2</td><td>2026-10-27</td><td>Added FR-HOME-06, the question count on Home (from the next version code).</td></tr>
   <tr><td>1.3</td><td>2026-10-29</td><td>FR-SET-01: custom daily goal from 5 to 200 (from version code 5).</td></tr>
+  <tr><td>1.4</td><td>2026-11-03</td><td>From QA report 2026-11-03: FR-PRAC-09 score counts answered questions only; new FR-PRAC-11 Skip; FR-RES-03 practise-missed built; FR-SET-05 Rate opens Google Play (all from version code 5).</td></tr>
 </tbody></table></div>
 
 <div class="foot">
