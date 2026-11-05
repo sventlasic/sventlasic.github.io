@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "note": "Shared by all of our apps: our own apps, shown in an app's ad slot when no real ad is available. Each app leaves itself out. Only list our own products. To change: edit this file, raise version by 1, put any new icon (96 x 96 PNG) in icons/, then commit and push. Apps pick up the change from their next launch. Use plain Play Store links: each app adds its own tracking tag when the banner is tapped. Optional showIn: a list of package IDs of the apps that may show this promotion (leave it out to show it in every app); use it to keep a promotion to apps with the same audience, for example Philippine apps only.",
   "promos": [
     {
@@ -10,8 +10,7 @@
       "icon": "helperhive.png",
       "background": "#0F2D3D",
       "accent": "#1A9E8F",
-      "weight": 1,
-      "showIn": ["com.civilservicereviewertoday.app"]
+      "weight": 1
     },
     {
       "id": "civilservicereviewertoday",
@@ -21,8 +20,7 @@
       "icon": "civilservicereviewertoday.png",
       "background": "#0F2742",
       "accent": "#0F2742",
-      "weight": 1,
-      "showIn": ["com.helperhive.app"]
+      "weight": 1
     },
     {
       "id": "skybite",
