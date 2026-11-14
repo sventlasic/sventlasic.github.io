@@ -1,0 +1,80 @@
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --fg: #1e2329;
+  --muted: #5b6570;
+  --rule: #dde2e6;
+  --accent: #2d55c8;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #15191d;
+    --fg: #e8ecef;
+    --muted: #a7b0b9;
+    --rule: #2c333a;
+    --accent: #a9c1ff;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+.wrap { max-width: 44rem; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+
+h1 { font-size: 1.75rem; line-height: 1.25; margin: 0 0 .5rem; letter-spacing: -.01em; }
+
+h2 {
+  font-size: 1.125rem;
+  margin: 2.5rem 0 .75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+}
+h2:first-of-type { border-top: 0; padding-top: 0; margin-top: 2rem; }
+
+p, li { margin: 0 0 1rem; }
+ul { padding-left: 1.25rem; }
+li { margin-bottom: .5rem; }
+
+a { color: var(--accent); overflow-wrap: anywhere; }
+a:hover { text-decoration: none; }
+
+strong { font-weight: 600; }
+
+h3 { font-size: 1rem; margin: 1.75rem 0 .5rem; }
+ol { padding-left: 1.5rem; }
+ul.check { list-style: none; padding-left: 0; }
+ul.check li::before { content: "\2610"; margin-right: .5rem; color: var(--muted); }
+code { font: .875em ui-monospace, SFMono-Regular, Consolas, monospace; overflow-wrap: anywhere; }
+blockquote {
+  margin: 0 0 1rem;
+  padding: .75rem 1rem;
+  border-left: 3px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+blockquote p { margin: 0; }
+.table { overflow-x: auto; margin: 0 0 1.25rem; }
+table { border-collapse: collapse; width: 100%; font-size: .9375rem; }
+th, td { text-align: left; vertical-align: top; padding: .5rem .625rem; border-bottom: 1px solid var(--rule); }
+th { font-weight: 600; }
+td:first-child { white-space: nowrap; }
+
+.dates { color: var(--muted); font-size: .875rem; margin: 0 0 2rem; }
+
+.lede { font-size: 1.0625rem; }
+
+.foot {
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: .875rem;
+}
+.foot a { margin-right: 1rem; }
