@@ -3,105 +3,99 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HelperHive</title>
-<meta name="description" content="HelperHive — a Philippines marketplace app connecting employers with household helpers.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐝</text></svg>">
+<title>Our Android apps</title>
+<meta name="description" content="Free Android apps: HelperHive, Civil Service Reviewer Today and Skybite.">
+<link rel="canonical" href="https://sventlasic.github.io/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>">
 <style>
   :root{
-    --teal:#1A9E8F; --teal-lt:#E6F7F5; --navy:#0F2D3D; --navy-lt:#1A4A5E;
-    --sand:#F7F4EF; --mid:#6B7A8D; --white:#FFFFFF; --border:#DDE3EB;
+    --bg:#F5F6F8; --card:#FFFFFF; --text:#16202B; --muted:#5F6B7A;
+    --border:#E1E5EB; --accent:#1A73E8; --accent-soft:#E8F0FE;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0F141A; --card:#18202A; --text:#E8EDF3; --muted:#9AA6B4;
+      --border:#26313D; --accent:#8AB4F8; --accent-soft:#1C2B40;
+    }
   }
   *{box-sizing:border-box}
   body{
-    margin:0; background:var(--sand); color:var(--navy);
+    margin:0; background:var(--bg); color:var(--text);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    line-height:1.65; -webkit-font-smoothing:antialiased;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
   }
-  .hero{
-    background:linear-gradient(135deg,var(--navy) 0%,var(--navy-lt) 100%);
-    color:var(--white); padding:64px 24px 56px; text-align:center;
+  header{max-width:760px; margin:0 auto; padding:56px 16px 24px}
+  header h1{margin:0 0 6px; font-size:30px; letter-spacing:-.4px}
+  header p{margin:0; color:var(--muted); font-size:17px}
+  main{max-width:760px; margin:0 auto; padding:8px 16px 56px; display:grid; gap:16px}
+  .app{
+    background:var(--card); border:1px solid var(--border); border-radius:16px;
+    padding:20px; display:flex; gap:16px; align-items:flex-start;
   }
-  .logo{font-size:52px; line-height:1; margin-bottom:12px}
-  .hero h1{margin:0 0 8px; font-size:34px; letter-spacing:-.5px}
-  .hero p{margin:0; color:#9FC4D1; font-size:17px}
-  main{max-width:720px; margin:0 auto; padding:40px 24px 64px}
-  .card{
-    background:var(--white); border:1px solid var(--border); border-radius:16px;
-    padding:28px; margin-bottom:20px;
-  }
-  h2{font-size:20px; margin:0 0 12px}
-  p{margin:0 0 14px}
-  p:last-child{margin-bottom:0}
-  .muted{color:var(--mid)}
-  ul{margin:0; padding-left:20px; color:var(--mid)}
-  li{margin-bottom:6px}
-  .links{display:flex; flex-wrap:wrap; gap:12px; margin-top:4px}
+  .app img{width:64px; height:64px; border-radius:14px; flex:none}
+  .app h2{margin:0 0 2px; font-size:19px}
+  .app .tag{margin:0 0 4px; color:var(--muted); font-size:13px; text-transform:uppercase; letter-spacing:.4px}
+  .app p{margin:0 0 12px}
+  .links{display:flex; flex-wrap:wrap; gap:8px}
   .btn{
-    display:inline-block; text-decoration:none; font-weight:600; font-size:15px;
-    padding:12px 20px; border-radius:20px; background:var(--teal); color:var(--white);
+    display:inline-block; text-decoration:none; font-weight:600; font-size:14px;
+    padding:9px 16px; border-radius:20px; background:var(--accent); color:var(--card);
   }
-  .btn.alt{background:var(--teal-lt); color:var(--teal)}
+  .btn.alt{background:var(--accent-soft); color:var(--accent)}
   .btn:hover{opacity:.9}
-  a{color:var(--teal)}
-  footer{
-    text-align:center; color:var(--mid); font-size:14px;
-    padding:0 24px 48px; max-width:720px; margin:0 auto;
-  }
+  footer{max-width:760px; margin:0 auto; padding:0 16px 48px; color:var(--muted); font-size:14px}
+  @media (max-width:480px){ .app{flex-direction:column} }
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="logo">🐝</div>
-  <h1>HelperHive</h1>
-  <p>Find trusted household help near you.</p>
-</div>
+<header>
+  <h1>Our apps</h1>
+  <p>Free Android apps. Each app has its own page with its privacy policy, terms and support contact.</p>
+</header>
 
 <main>
-  <div class="card">
-    <h2>About the app</h2>
-    <p>HelperHive is a mobile marketplace for the Philippines that connects <strong>employers</strong> with <strong>household helpers</strong> — cleaning, cooking, childcare, elderly care, pet care and similar services.</p>
-    <p class="muted">HelperHive is not an employer, employment agency, or party to any agreement between users. We do not vet or background-check users. All work arrangements are agreed directly between the employer and the helper.</p>
-  </div>
-
-  <div class="card">
-    <h2>Privacy by design</h2>
-    <p>We deliberately collect as little as possible:</p>
-    <ul>
-      <li>Name, email and photo from your Google sign-in</li>
-      <li>Your <strong>city</strong> only — never GPS coordinates, street address, barangay, ZIP code, phone number or government IDs</li>
-      <li>The content you create in the app: messages, reviews and reports</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>Legal</h2>
-    <p class="muted">Last updated: August 2026 · Version 1.2</p>
-    <div class="links">
-      <a class="btn" href="terms.html">Terms of Service</a>
-      <a class="btn alt" href="privacy.html">Privacy Policy</a>
-      <a class="btn alt" href="delete-account.html">Delete my account</a>
+  <section class="app">
+    <img src="promotions/icons/helperhive.png" alt="" width="64" height="64">
+    <div>
+      <p class="tag">Philippines · Marketplace</p>
+      <h2>HelperHive</h2>
+      <p>Connects employers with household helpers: cleaning, cooking, childcare, elderly care and pet care.</p>
+      <div class="links">
+        <a class="btn" href="https://play.google.com/store/apps/details?id=com.helperhive.app">Get it on Google Play</a>
+        <a class="btn alt" href="helperhive/">About &amp; privacy</a>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="card">
-    <h2>Other apps</h2>
-    <p class="muted">Also by us, free on Android:</p>
-    <div class="links">
-      <a class="btn alt" href="civil-service-reviewer-today/">Civil Service Reviewer Today</a>
-      <a class="btn alt" href="skybite/">Skybite</a>
+  <section class="app">
+    <img src="promotions/icons/civilservicereviewertoday.png" alt="" width="64" height="64">
+    <div>
+      <p class="tag">Philippines · Exam prep</p>
+      <h2>Civil Service Reviewer Today</h2>
+      <p>A free reviewer for the Philippine Civil Service Exam, with lessons and practice questions.</p>
+      <div class="links">
+        <a class="btn" href="https://play.google.com/store/apps/details?id=com.civilservicereviewertoday.app">Get it on Google Play</a>
+        <a class="btn alt" href="civil-service-reviewer-today/">About &amp; privacy</a>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="card">
-    <h2>Contact &amp; support</h2>
-    <p>Questions, privacy requests, or account deletion:<br>
-    <a href="mailto:helperhivesupport@gmail.com">helperhivesupport@gmail.com</a></p>
-    <p class="muted">You can also delete your account at any time from the app: <strong>Profile → Privacy &amp; Security → Delete Account</strong>.</p>
-  </div>
+  <section class="app">
+    <img src="promotions/icons/skybite.png" alt="" width="64" height="64">
+    <div>
+      <p class="tag">Game · Arcade</p>
+      <h2>Skybite</h2>
+      <p>Six fast arcade survival scenes. One rule: survive as long as you can.</p>
+      <div class="links">
+        <a class="btn" href="https://play.google.com/store/apps/details?id=com.sventlasic.skybite">Get it on Google Play</a>
+        <a class="btn alt" href="skybite/">About &amp; privacy</a>
+      </div>
+    </div>
+  </section>
 </main>
 
-<footer>© 2026 HelperHive · Philippines</footer>
+<footer>© 2026 · sventlasic.github.io</footer>
 
 </body>
 </html>
