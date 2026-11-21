@@ -12,8 +12,8 @@
 <h1>Civil Service Reviewer Today: Functional Requirements Specification</h1>
 
 <p><strong>Product:</strong> Civil Service Reviewer Today (Android)<br>
-<strong>Applies to:</strong> 1.0.0, version code 2 and later (FR-SET-08: version code 3 and later; custom daily goal in FR-SET-01, FR-PRAC-11, FR-RES-03 and the Rate link in FR-SET-05: version code 5 and later; FR-LES-04: version code 6 and later; FR-HOME-03 and FR-PRAC-08 wording: version code 7 and later; FR-ADS-07: version code 9 and later) · package <code>com.civilservicereviewertoday.app</code><br>
-<strong>Document version:</strong> 1.8 · 2026-11-12<br>
+<strong>Applies to:</strong> 1.0.0, version code 2 and later (FR-SET-08: version code 3 and later; custom daily goal in FR-SET-01, FR-PRAC-11, FR-RES-03 and the Rate link in FR-SET-05: version code 5 and later; FR-LES-04: version code 6 and later; FR-HOME-03 and FR-PRAC-08 wording: version code 7 and later; FR-ADS-07: version code 9 and later; FR-ADS-08: version code 12 and later) · package <code>com.civilservicereviewertoday.app</code><br>
+<strong>Document version:</strong> 1.9 · 2026-11-19<br>
 <strong>Status:</strong> Baseline for closed testing</p>
 
 <blockquote><p>Reading a saved or printed copy? Check the document version above against <a href="https://sventlasic.github.io/civil-service-reviewer-today/frs.html">https://sventlasic.github.io/civil-service-reviewer-today/frs.html</a> before reporting a finding.</p></blockquote>
@@ -221,6 +221,7 @@
   <tr><td>FR-ADS-05</td><td>Users who saw a consent form (EEA, UK, Switzerland, regulated US states) shall have an <strong>Ad privacy choices</strong> row in Settings that reopens it.</td><td>M</td></tr>
   <tr><td>FR-ADS-06</td><td>When no ad can be shown, the slot shall show a banner for one of our other apps, marked &quot;OUR APP&quot;, and never for this app itself. The banner shall show the app's real icon also offline (icons of the apps listed at build time are built in; icons of apps added later are saved on the phone while online); only if no icon is available, the first letter of the name. Tapping it opens the app's Google Play page.</td><td>S</td></tr>
   <tr><td>FR-ADS-07</td><td>The banner slot shall never stay empty until the app restarts: a request with no answer after 30 seconds counts as failed (our own banner shows and the retry takes over), and returning to the app 10 or more minutes after the last ad loaded asks for a fresh ad. Requests stay at least 30 seconds apart.</td><td>M</td></tr>
+  <tr><td>FR-ADS-08</td><td>A banner whose screen is covered by another screen shall not request ads: its retry after a failure and its fresh request after a long absence wait until its screen is in front again, then run at once if due.</td><td>M</td></tr>
 </tbody></table></div>
 
 <h3>3.11 Rating: FR-RATE</h3>
@@ -267,6 +268,7 @@
   <tr><td>1.6</td><td>2026-11-05</td><td>Added FR-LES-04, the next-lesson link (from version code 6).</td></tr>
   <tr><td>1.7</td><td>2026-11-07</td><td>From QA report: FR-HOME-03 button reads Practice more instead of Continue practice; FR-PRAC-08 leave message explains unreached questions (from version code 7). Questions version 6: VER-0021 and VER-0239 (parallel structure) reworded.</td></tr>
   <tr><td>1.8</td><td>2026-11-12</td><td>Added FR-ADS-07: the banner slot recovers from an unanswered request and from an ad cleared in the background (from version code 9).</td></tr>
+  <tr><td>1.9</td><td>2026-11-19</td><td>Added FR-ADS-08: covered banners do not request ads (from version code 12).</td></tr>
 </tbody></table></div>
 
 <div class="foot">
